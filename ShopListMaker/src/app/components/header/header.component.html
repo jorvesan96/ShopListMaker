@@ -1,4 +1,8 @@
 <nav class="navegador">
-    <img id="logo" src="ShopListMaker\src\assets\icons\iconmonstr-shop-8-240 2.png">
-    <img id="inicio_sesion" src="ShopListMaker\src\assets\icons\Inicio Sesion.png">
+  <a routerLink=""> <img id="logo" src="assets\icons\iconmonstr-shop-8-240 2.png" alt="logo"></a>
+    <ul>
+      <a *ngIf="isLogged" routerLink="perfil">Mi perfil</a>
+      <a *ngIf="isLogged" routerLink="">Cerrar sesión</a>
+      <a *ngIf="!isLogged" routerLink="acceso"> <img id="sesion" src="assets/icons/Inicio Sesion.png" alt="inicio sesion"></a>
+    </ul>
 </nav>

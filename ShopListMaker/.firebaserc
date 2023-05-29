@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "shoplistmaker-7b5a6": {
+      "hosting": {
+        "ShopListMaker": [
+          "shoplistmaker-7b5a6"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "shoplistmaker-7b5a6"
+  }
+}
