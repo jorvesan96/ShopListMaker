@@ -1,1 +1,36 @@
-<p>registro works!</p>
+<div id="content">
+
+  <section id="login">
+
+    <div id="login-container">
+      <div id="acciones">
+        <p>Acceder</p>
+        <a id="registro" routerLink='/registro'>Registro</a>
+      </div>
+
+      <div id="form">
+        <form [formGroup]="loginForm" name="loginForm"  id="login-form">
+          <div id="fields">
+
+            <input matInput type="email" formControlName="correo" placeholder="Correo eléctronico" class="form-control">
+            <div *ngIf="f['correo'].touched && f['correo'].invalid" class="alert">
+              <div *ngIf="f['correo'].touched && f['correo'].errors">*Se debe introducir un correo válido.</div>
+            </div>
+
+            <input type="password" formControlName="contraseña" placeholder="Contraseña" class="form-control">
+            <div *ngIf="f['contraseña'].touched && f['contraseña'].invalid" class="alert">
+              <div *ngIf="!canLogin">Usuario o contraseña incorrectos</div>
+              <div *ngIf="f['contraseña'].errors && f['contraseña'].errors['required']">*Se necesita una contraseña.
+              </div>
+              <div *ngIf="f['contraseña'].errors && f['contraseña'].errors['minlength']">*La contraseña debe tener al
+                menos 5 caracteres</div>
+            </div>
+          </div>
+          <a routerLink="/contrasena-olvidada" class="olvidada">He olvidado mi contraseña</a>
+          <input type="submit" value="Acceder" id="boton">
+        </form>
+      </div>
+
+    </div>
+  </section>
+</div>
