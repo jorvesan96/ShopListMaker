@@ -20,8 +20,8 @@ export class PerfilComponent {
 
   guardarPerfil() {
     // Aquí puedes implementar la lógica para guardar los datos del perfil
-    console.log(this.perfil);
 
     this.editMode = false;
+    this.perfil.password = '';
   }
 }

@@ -1,39 +1,59 @@
-<div id="content">
+<div id="login-container">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link " routerLink='/acceso'>Acceso</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" routerLink='/registro'>Registro</a>
+    </li>
+  </ul>
 
-  <section id="login">
-
-    <div id="login-container">
-      <ul class="nav nav-pills">
-        <li class="nav-item">
-          <a class="nav-link " routerLink='/acceso'>Acceso</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" routerLink='/registro'>Registro</a>
-        </li>
-      </ul>
-
-      <div id="form">
-        <form [formGroup]="loginForm" name="loginForm"  id="login-form">
-          <div id="fields">
-
-            <input matInput type="email" formControlName="correo" placeholder="Correo eléctronico" class="form-control">
-            <div *ngIf="f['correo'].touched && f['correo'].invalid" class="alert">
-              <div *ngIf="f['correo'].touched && f['correo'].errors">*Se debe introducir un correo válido.</div>
-            </div>
-
-            <input type="password" formControlName="contraseña" placeholder="Contraseña" class="form-control">
-            <div *ngIf="f['contraseña'].touched && f['contraseña'].invalid" class="alert">
-              <div *ngIf="!canLogin">Usuario o contraseña incorrectos</div>
-              <div *ngIf="f['contraseña'].errors && f['contraseña'].errors['required']">*Se necesita una contraseña.
+      <div class="row">
+        <div class="col-md-12 col-md-offset-3">
+            <form [formGroup]="personalDetails" id="msform">
+              <div class="progress">
+                <div id="myProgressBar" class="progress-bar progress-bar-striped progress-bar-animated"></div>
               </div>
-              <div *ngIf="f['contraseña'].errors && f['contraseña'].errors['minlength']">*La contraseña debe tener al
-                menos 5 caracteres</div>
+
+                <fieldset  *ngIf="step == 0" >
+                    <input type="text" formControlName="name"  [ngClass]="{ 'is-invalid': personal_step && personal['name'].errors }" placeholder="Full Name" class="form-control"/>
+                    <div *ngIf="personal_step && personalDetails.controls['name'].errors">
+                        <div *ngIf="personal['name'].errors?.['required']">Name is required</div>
+                    </div>
+                    <input type="text" formControlName="email" name="email" placeholder="Email" class="form-control"/>
+                    <div *ngIf="personal_step && personalDetails.controls['email'].errors">
+                      <div *ngIf="personal['email'].errors?.['required']">Email is required</div>
+                   </div>
+                    <input type="text" formControlName="phone" name="phone" placeholder="Phone" class="form-control"/>
+                    <div *ngIf="personal_step && personalDetails.controls['phone'].errors">
+                      <div *ngIf="personal['phone'].errors?.['required']">Phone is required</div>
+                  </div>
+                    <input (click)="next()" type="button" name="next" class="next action-button" value="Siguiente"/>
+                </fieldset>
+            </form>
+             <form [formGroup]="addressDetails" id="msform">
+                <fieldset *ngIf="step == 1" >
+                    <input type="text" formControlName="city"  placeholder="City" class="form-control"/>
+                    <div *ngIf="address_step && addressDetails.controls['city'].errors">
+                        <div *ngIf="address['city'].errors?.['required']">City is required</div>
+                    </div>
+                    <input type="text" formControlName="address"  placeholder="address" class="form-control">
+                    <div *ngIf="address_step && addressDetails.controls['address'].errors">
+                        <div *ngIf="address['address'].errors?.['required']">Address is required</div>
+                    </div>
+                    <input type="text" formControlName="pincode"  placeholder="Pincode" class="form-control"/>
+                    <div *ngIf="address_step && addressDetails.controls['pincode'].errors">
+                        <div *ngIf="address['pincode'].errors?.['required']">Pincode is required</div>
+                    </div>
+                    <input (click)="previous()" type="button" name="previous" class="previous action-button-previous" value="Anterior"/>
+                    <input (click)="submit()" type="submit" name="submit" class="submit action-button" value="Enviar"/>
+                </fieldset>
+            </form>
+            <div *ngIf="step == 2">
+                <h2>Registro completado con exito</h2>
             </div>
-          </div>
-          <input type="submit" value="Acceder" id="boton">
-        </form>
-      </div>
+
+        </div>
+    </div>
 
     </div>
-  </section>
-</div>
