@@ -18,7 +18,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import * as CryptoJS from 'crypto-js';
 
 
 @NgModule({
@@ -47,4 +47,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    // Hacer que CryptoJS esté disponible globalmente
+    (window as any).CryptoJS = CryptoJS;
+  }
+ }

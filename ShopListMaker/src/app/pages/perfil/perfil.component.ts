@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SHA256 } from 'crypto-js';
 
 @Component({
   selector: 'app-perfil',
@@ -19,9 +20,13 @@ export class PerfilComponent {
   }
 
   guardarPerfil() {
-    // Aquí puedes implementar la lógica para guardar los datos del perfil
+      const encryptedPassword = this.encryptPassword(this.perfil.password);
+      this.editMode = false;
+      this.perfil.password = encryptedPassword;
+  }
 
-    this.editMode = false;
-    this.perfil.password = '';
+  encryptPassword(password: string): string {
+    const encryptedPassword = SHA256(password).toString();
+    return encryptedPassword;
   }
 }

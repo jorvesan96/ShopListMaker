@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class AccesoComponent {
 
+
   constructor(private router: Router) { }
+
 
   correo: string | undefined;
   canLogin: boolean = true;
