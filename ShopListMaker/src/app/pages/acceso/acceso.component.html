@@ -3,10 +3,14 @@
   <section id="login">
 
     <div id="login-container">
-      <div id="acciones">
-        <p>Acceder</p>
-        <a id="registro" routerLink='/registro'>Registro</a>
-      </div>
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink='/acceso'>Acceso</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink='/registro'>Registro</a>
+        </li>
+      </ul>
 
       <div id="form">
         <form [formGroup]="loginForm" name="loginForm"  id="login-form">

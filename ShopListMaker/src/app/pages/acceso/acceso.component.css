@@ -12,21 +12,6 @@
   border-radius: 10px;
 }
 
-#acciones {
-  width: 70%;
-  height: 4.9vw;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#acciones a {
-  font-family: "Open sans", sans-serif;
-  font-size: 1.2vw;
-  text-decoration: none;
-  color: black;
-}
 
 .ng-untouched,
 .ng-touched {

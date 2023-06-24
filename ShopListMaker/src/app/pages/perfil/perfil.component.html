@@ -1,1 +1,40 @@
-<p>perfil works!</p>
+<h1>Perfil de usuario</h1>
+
+<div id="content">
+  <section id="perfil">
+  <div id="perfil-container">
+    <div *ngIf="!editMode">
+      <p><strong>Email:</strong> <br> {{ perfil.email }}</p>
+      <p><strong>Contraseña:</strong> <br>{{ perfil.password }}</p>
+      <p><strong>Localización:</strong> <br> {{ perfil.location }}</p>
+      <div class="button-container">
+        <button (click)="activarEdicion()">Modificar</button>
+      </div>
+    </div>
+
+    <form *ngIf="editMode" (ngSubmit)="guardarPerfil()">
+      <div id="editable">
+        <label for="email">Email:</label>
+        <br>
+        <input type="email" id="email" name="email" [(ngModel)]="perfil.email" required>
+      </div>
+
+      <div id="editable">
+        <label for="password">Contraseña:</label>
+        <br>
+        <input type="password" id="password" name="password" [(ngModel)]="perfil.password" required>
+      </div>
+
+      <div id="editable">
+        <label for="location">Localización:</label>
+        <br>
+        <input type="text" id="location" name="location" [(ngModel)]="perfil.location" required>
+      </div>
+
+      <div class="button-container">
+        <button type="submit">Guardar</button>
+      </div>
+    </form>
+  </div>
+  </section>
+</div>

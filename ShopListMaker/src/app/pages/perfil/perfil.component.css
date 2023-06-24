@@ -1,0 +1,47 @@
+#perfil-container {
+  background-color: white;
+  border-radius: 10px;
+  height: 45.8vh;
+  padding-top: 5%;
+}
+#perfil {
+  height: 50vh;
+  width: 40vw;
+  border: 2px solid black;
+  margin: 5vw auto;
+  border-radius: 10px;
+  margin-top: 7%;
+}
+#perfil-container p{
+  font-family: "Open sans", sans-serif;
+  font-size: 1.2vw;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  margin-top: 4%;
+}
+#editable{
+  font-family: "Open sans", sans-serif;
+  font-size: 1.2vw;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  margin-top: 4%;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 5%;
+  position: relative;
+}
+
+strong{
+  margin-bottom: 2%;
+}
+
+.button-container button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
