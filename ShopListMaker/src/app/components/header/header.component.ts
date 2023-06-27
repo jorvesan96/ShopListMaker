@@ -8,7 +8,23 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class HeaderComponent {
 
-  constructor() {}
   isLogged: boolean = false;
+
+  constructor(private afAuth: AngularFireAuth) {}
+
+  ngOnInit() {
+    this.afAuth.authState.subscribe(user => {
+      this.isLogged = !!user;
+    });
+
+  }
+
+  cerrarSesion() {
+    this.afAuth.signOut()
+    .then(() => {
+    })
+    .catch((error) => {
+      console.error('Error al cerrar sesión:', error);
+    });  }
 
 }

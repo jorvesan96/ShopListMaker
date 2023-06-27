@@ -2,8 +2,8 @@
 
   <a routerLink=""><img id="logo" src="assets\icons\iconmonstr-shop-8-240 2.png" alt="logo"></a><p id="titulo">ShopListMaker</p>
     <ul>
-      <a *ngIf="isLogged" routerLink="perfil">Mi perfil</a>
-      <a *ngIf="isLogged" routerLink="">Cerrar sesión</a>
-      <a *ngIf="!isLogged" routerLink="acceso"> <img id="sesion" src="assets/icons/Inicio Sesion.png" alt="inicio sesion"></a>
+      <a *ngIf="!isLogged" routerLink="perfil">Mi perfil</a>
+      <a *ngIf="!isLogged" (click)="cerrarSesion()" routerLink="">Cerrar sesión</a>
+      <a *ngIf="isLogged" routerLink="acceso"> <img id="sesion" src="assets/icons/Inicio Sesion.png" alt="inicio sesion"></a>
     </ul>
 </nav>

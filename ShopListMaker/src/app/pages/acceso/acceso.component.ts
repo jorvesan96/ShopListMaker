@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-acceso',
   templateUrl: './acceso.component.html',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class AccesoComponent {
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
 
   correo: string | undefined;
@@ -32,4 +33,22 @@ export class AccesoComponent {
     return this.loginForm.controls;
   }
 
+  login(loginForm: any): any {
+
+    const usuario = {
+      Correo: loginForm.value.correo,
+      Contraseña: loginForm.value.contraseña
+    }
+
+    this.authService.signInWithEmail(usuario.Correo, usuario.Contraseña)
+      .then(() => {
+        console.log("Autenticado con exito")
+        this.router.navigate(["/"]);
+      })
+      .catch((error) => {
+        this.canLogin = false;
+        console.log("Fallo al autenticar")
+        return false;
+      });
+  }
 }

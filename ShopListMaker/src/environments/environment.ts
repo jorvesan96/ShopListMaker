@@ -1,3 +1,7 @@
+import { initializeApp } from 'firebase/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+
 export const environment = {
   firebase: {
     projectId: 'shoplistmaker-7b5a6',
@@ -9,3 +13,5 @@ export const environment = {
     measurementId: 'G-4B3LLR1YQT',
   },
 };
+
+const app = initializeApp(environment.firebase);

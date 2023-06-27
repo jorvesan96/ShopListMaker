@@ -10,43 +10,45 @@
 
       <div class="row">
         <div class="col-md-12 col-md-offset-3">
-            <form [formGroup]="personalDetails" id="msform">
+            <form [formGroup]="registroForm" id="msform">
               <div class="progress">
                 <div id="myProgressBar" class="progress-bar progress-bar-striped progress-bar-animated"></div>
               </div>
 
                 <fieldset  *ngIf="step == 0" >
-                    <input type="text" formControlName="name"  [ngClass]="{ 'is-invalid': personal_step && personal['name'].errors }" placeholder="Full Name" class="form-control"/>
-                    <div *ngIf="personal_step && personalDetails.controls['name'].errors">
-                        <div *ngIf="personal['name'].errors?.['required']">Name is required</div>
+                    <input type="text" formControlName="email"  [ngClass]="{ 'is-invalid': personal_step && f['email'].errors }" placeholder="Email" class="form-control"/>
+                    <div *ngIf="personal_step && registroForm.controls['email'].errors">
+                        <div *ngIf="f['email'].errors?.['required']">El email es necesario</div>
                     </div>
-                    <input type="text" formControlName="email" name="email" placeholder="Email" class="form-control"/>
-                    <div *ngIf="personal_step && personalDetails.controls['email'].errors">
-                      <div *ngIf="personal['email'].errors?.['required']">Email is required</div>
+                    <input type="text" formControlName="repetirCorreo" name="repetirCorreo" placeholder="Repetir Correo" class="form-control"/>
+                    <div *ngIf="personal_step && registroForm.controls['repetirCorreo'].errors">
+                      <div *ngIf="f['repetirCorreo'].errors?.['required']">El email debe coincidir</div>
                    </div>
-                    <input type="text" formControlName="phone" name="phone" placeholder="Phone" class="form-control"/>
-                    <div *ngIf="personal_step && personalDetails.controls['phone'].errors">
-                      <div *ngIf="personal['phone'].errors?.['required']">Phone is required</div>
+                    <input type="text" formControlName="contrasena" name="contrasena" placeholder="Contrasena" class="form-control"/>
+                    <div *ngIf="personal_step && registroForm.controls['contrasena'].errors">
+                      <div *ngIf="f['contrasena'].errors?.['required']">La contraseña es necesaria</div>
                   </div>
+                    <input type="text" formControlName="repetirContrasena" name="repetirContrasena" placeholder="Repetir Contrasena" class="form-control"/>
+                      <div *ngIf="personal_step && registroForm.controls['repetirContrasena'].errors">
+                        <div *ngIf="f['repetirContrasena'].errors?.['required']">La contraseña debe coincidir</div>
+                    </div>
                     <input (click)="next()" type="button" name="next" class="next action-button" value="Siguiente"/>
                 </fieldset>
-            </form>
-             <form [formGroup]="addressDetails" id="msform">
                 <fieldset *ngIf="step == 1" >
-                    <input type="text" formControlName="city"  placeholder="City" class="form-control"/>
-                    <div *ngIf="address_step && addressDetails.controls['city'].errors">
-                        <div *ngIf="address['city'].errors?.['required']">City is required</div>
+                    <input type="text" formControlName="city"  placeholder="ciudad" class="form-control"/>
+                    <div *ngIf="address_step && registroForm.controls['city'].errors">
+                        <div *ngIf="f['city'].errors?.['required']">La ciudad es necesaria</div>
                     </div>
-                    <input type="text" formControlName="address"  placeholder="address" class="form-control">
-                    <div *ngIf="address_step && addressDetails.controls['address'].errors">
-                        <div *ngIf="address['address'].errors?.['required']">Address is required</div>
+                    <input type="text" formControlName="address"  placeholder="Direccion" class="form-control">
+                    <div *ngIf="address_step && registroForm.controls['address'].errors">
+                        <div *ngIf="f['address'].errors?.['required']">La direccion es necesaria</div>
                     </div>
-                    <input type="text" formControlName="pincode"  placeholder="Pincode" class="form-control"/>
-                    <div *ngIf="address_step && addressDetails.controls['pincode'].errors">
-                        <div *ngIf="address['pincode'].errors?.['required']">Pincode is required</div>
+                    <input type="number" formControlName="pincode"  placeholder="Codigo postal" class="form-control"/>
+                    <div *ngIf="address_step && registroForm.controls['pincode'].errors">
+                        <div *ngIf="f['pincode'].errors?.['required']">El codigo postal es necesario</div>
                     </div>
                     <input (click)="previous()" type="button" name="previous" class="previous action-button-previous" value="Anterior"/>
-                    <input (click)="submit()" type="submit" name="submit" class="submit action-button" value="Enviar"/>
+                    <input (click)="enviarRegistro(registroForm)" type="submit" name="submit" class="submit action-button" value="Enviar"/>
                 </fieldset>
             </form>
             <div *ngIf="step == 2">
