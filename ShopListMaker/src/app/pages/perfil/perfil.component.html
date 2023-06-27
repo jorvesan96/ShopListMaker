@@ -4,9 +4,11 @@
   <section id="perfil">
   <div id="perfil-container">
     <div *ngIf="!editMode">
-      <p><strong>Email:</strong> <br> {{ perfil.email }}</p>
+      <p><strong>Email:</strong> <br> {{ usuario.email }}</p>
       <p><strong>Contraseña:</strong> <br>********</p>
-      <p><strong>Localización:</strong> <br> {{ perfil.location }}</p>
+      <p><strong>Ciudad:</strong> <br> {{ usuario.ciudad }}</p>
+      <p><strong>Direccion:</strong> <br> {{ usuario.direccion }}</p>
+      <p><strong>Codigo Postal:</strong> <br> {{ usuario.postalCode }}</p>
       <div class="button-container">
         <button (click)="activarEdicion()">Modificar</button>
       </div>
@@ -16,20 +18,33 @@
       <div id="editable">
         <label for="email">Email:</label>
         <br>
-        <input type="email" id="email" name="email" [(ngModel)]="perfil.email" required>
+        <input type="email" id="email" name="email" [(ngModel)]="usuario.email" required>
       </div>
 
       <div id="editable">
         <label for="password">Contraseña:</label>
         <br>
-        <input type="password" id="password" name="password" [(ngModel)]="perfil.password" required>
+        <input type="password" id="password" name="password" [(ngModel)]="usuario.password" required>
       </div>
 
       <div id="editable">
-        <label for="location">Localización:</label>
+        <label for="ciudad">Ciudad::</label>
         <br>
-        <input type="text" id="location" name="location" [(ngModel)]="perfil.location" required>
+        <input type="text" id="cuidad" name="ciudad" [(ngModel)]="usuario.ciudad" required>
       </div>
+
+      <div id="editable">
+        <label for="direccion">Direccion:</label>
+        <br>
+        <input type="text" id="direccion" name="direccion" [(ngModel)]="usuario.direccion" required>
+      </div>
+
+      <div id="editable">
+        <label for="postalcode">Codigo postal:</label>
+        <br>
+        <input type="number" id="postalCode" name="postalCode" [(ngModel)]="usuario.postalCode" required>
+      </div>
+
 
       <div class="button-container">
         <button type="submit">Guardar</button>
