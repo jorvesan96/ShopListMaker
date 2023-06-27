@@ -25,7 +25,6 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +52,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

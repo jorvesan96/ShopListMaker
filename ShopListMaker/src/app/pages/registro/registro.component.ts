@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat/app';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
@@ -25,11 +23,11 @@ export class RegistroComponent implements OnInit {
   this.registroForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     repetirCorreo: ['', [Validators.required, Validators.email, validarEmailIgual()]],
-    contrasena: ['', [Validators.required, Validators.minLength(6)]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
     repetirContrasena: ['', [Validators.required, Validators.minLength(6), validarContrasenaIgual()]],
-    city: ['', Validators.required],
-    address: ['', Validators.required],
-    pincode: ['', [Validators.required, Validators.maxLength(5), Validators.minLength(5)]]
+    ciudad: ['', Validators.required],
+    direccion: ['', Validators.required],
+    postalCode: ['', [Validators.required, Validators.maxLength(5), Validators.minLength(5)]]
   });
 }
 
@@ -50,7 +48,7 @@ export class RegistroComponent implements OnInit {
   enviarRegistro(registroForm: any) {
    this.step=2;
    document.getElementById("myProgressBar")!.style.width = "100%";
-          this.authService.createUserWIthEmail(registroForm.value.email, registroForm.value.contrasena)
+          this.authService.createUserWIthEmail(registroForm.value.email, registroForm.value.password)
       .then(() => {
         console.log("Usuario creado:")
         this.createUser();
@@ -91,9 +89,9 @@ export class RegistroComponent implements OnInit {
 }
 function validarEmailIgual(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
-    const correo = control.parent?.get('correo');
+    const email = control.parent?.get('email');
     const repetirCorreo = control.parent?.get('repetirCorreo');
-    if (correo?.value !== repetirCorreo?.value) {
+    if (email?.value !== repetirCorreo?.value) {
       return { emailNoIguales: true };
     }
     return null;
@@ -103,9 +101,9 @@ function validarEmailIgual(): ValidatorFn {
 
 function validarContrasenaIgual(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
-    const contrasena = control.parent?.get('contrasena');
+    const password = control.parent?.get('password');
     const repetirContrasena = control.parent?.get('repetirContrasena');
-    if (contrasena?.value !== repetirContrasena?.value) {
+    if (password?.value !== repetirContrasena?.value) {
       return { contrasenaNoIguales: true };
     }
     return null;
