@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
+import { SHA256 } from 'crypto-js';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
 @Component({
@@ -30,25 +31,40 @@ export class RegistroComponent implements OnInit {
     postalCode: ['', [Validators.required, Validators.maxLength(5), Validators.minLength(5)]]
   });
 }
+encryptPassword(password: string): string {
+  const encryptedPassword = SHA256(password).toString();
+  return encryptedPassword;
+}
 
   get f() {
     return this.registroForm.controls;
   }
 
-  next(){
-    this.step=1;
+  next() {
+    if (this.step === 0) {
+      this.personal_step = true;
+    }
+    this.personal_step = false;
+    this.address_step = true;
+    this.step = 1;
     document.getElementById("myProgressBar")!.style.width = "50%";
   }
 
-  previous(){
-    this.step=0;
+  previous() {
+    if (this.step === 0) {
+      this.personal_step = true;
+    }
+
+    this.address_step = false;
+    this.step = 0;
     document.getElementById("myProgressBar")!.style.width = "0%";
   }
+
 
   enviarRegistro(registroForm: any) {
    this.step=2;
    document.getElementById("myProgressBar")!.style.width = "100%";
-          this.authService.createUserWIthEmail(registroForm.value.email, registroForm.value.password)
+          this.authService.createUserWIthEmail(registroForm.value.email, this.encryptPassword(registroForm.value.password))
       .then(() => {
         console.log("Usuario creado:")
         this.createUser();
@@ -71,6 +87,8 @@ export class RegistroComponent implements OnInit {
     auth.onAuthStateChanged((user) => {
       if (user) {
         userID = user.uid;
+
+        this.registroForm.value.password = this.encryptPassword(this.registroForm.value.password);
 
         const usuariosRef = db.collection('usuarios').doc(userID);
         usuariosRef.set(this.registroForm.value)

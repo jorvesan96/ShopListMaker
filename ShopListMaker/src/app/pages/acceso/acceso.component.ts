@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { SHA256 } from 'crypto-js';
 
 @Component({
   selector: 'app-acceso',
@@ -33,6 +34,11 @@ export class AccesoComponent {
     return this.loginForm.controls;
   }
 
+  encryptPassword(password: string): string {
+    const encryptedPassword = SHA256(password).toString();
+    return encryptedPassword;
+  }
+
   login(loginForm: any): any {
 
     const usuario = {
@@ -40,7 +46,7 @@ export class AccesoComponent {
       Contraseña: loginForm.value.contraseña
     }
 
-    this.authService.signInWithEmail(usuario.Correo, usuario.Contraseña)
+    this.authService.signInWithEmail(usuario.Correo, this.encryptPassword(usuario.Contraseña))
       .then(() => {
         console.log("Autenticado con exito")
         this.router.navigate(["/"]);

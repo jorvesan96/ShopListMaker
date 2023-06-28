@@ -1,8 +1,41 @@
 #login-container {
   background-color: white;
   border-radius: 10px;
-  margin-top:10%;
-  width: 50%;
-  margin-left: 25%;
+  height: 100%;
+  width: 100%;
+
 }
 
+#login {
+  height: 43.5vh;
+  width: 40vw;
+  border: 2px solid black;
+  margin: 5vw auto;
+  border-radius: 10px;
+  margin-top: 10%;
+}
+
+
+#botones{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5%;
+}
+#boton {
+  background-color: transparent;
+  font-family: "Open sans", sans-serif;
+  font-size: 1.2vw;
+  border: 2px solid black;
+  border-radius: 0.5vw;
+  width: 10vw;
+  margin-left: 37%;
+  padding: 1vh 1vw;
+
+  margin-top: 5%;
+
+}
+
+#boton:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}

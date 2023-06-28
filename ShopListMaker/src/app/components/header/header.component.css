@@ -25,6 +25,20 @@
   margin-top: 0.5%;
 }
 
+#log-out{
+  width: 3.5%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
+
+#perfil{
+  width: 3.5%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
+
 #titulo{
   width: 10%;
   height: 80%;

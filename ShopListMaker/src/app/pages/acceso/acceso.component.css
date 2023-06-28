@@ -1,10 +1,10 @@
 #login {
-  height: 50vh;
+  height: 43.5vh;
   width: 40vw;
   border: 2px solid black;
   margin: 5vw auto;
   border-radius: 10px;
-  margin-top: 7%;
+  margin-top: 10%;
 }
 
 #login-container {
@@ -62,14 +62,12 @@
   position: absolute;
   margin-top: -1.8vw;
 }
-.olvidada {
+
+
+#botones{
   display: flex;
-  text-decoration: none;
-  color: darkblue;
-  font-size: 0.8vw;
-  text-align: center;
-  font-weight: normal;
-  width: fit-content;
+  justify-content: space-between;
+  margin: 0 5%;
 }
 
 

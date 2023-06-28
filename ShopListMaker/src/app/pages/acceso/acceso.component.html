@@ -3,7 +3,7 @@
   <section id="login">
 
     <div id="login-container">
-      <ul class="nav nav-pills">
+      <ul class="nav nav-pills" id="botones">
         <li class="nav-item">
           <a class="nav-link active" routerLink='/acceso'>Acceso</a>
         </li>
@@ -30,7 +30,6 @@
                 menos 5 caracteres</div>
             </div>
           </div>
-          <a routerLink="/contrasena-olvidada" class="olvidada">He olvidado mi contraseña</a>
           <input type="submit" (click)="login(loginForm)" value="Acceder" id="boton">
         </form>
       </div>

@@ -10,7 +10,6 @@ interface UsuarioData {
   ciudad: string;
   direccion: string;
   postalCode: number;
-  // Otros campos que tengas en tu documento
 }
 
 @Component({
@@ -25,9 +24,7 @@ export class PerfilComponent {
       this.usuario.email = user.email || '';
       this.retrieveUserData(user.uid);
     }
-
   }
-
 
   usuario: Usuario = {
     email: '',
@@ -37,7 +34,6 @@ export class PerfilComponent {
     postalCode: 0
   };
 
-
   editMode = false;
 
   activarEdicion() {
@@ -46,11 +42,11 @@ export class PerfilComponent {
 
   guardarPerfil() {
 
-    const user = firebase.auth().currentUser;
-
+      const user = firebase.auth().currentUser;
       const encryptedPassword = this.encryptPassword(this.usuario.password);
       this.editMode = false;
       this.usuario.password = encryptedPassword;
+
       if(user){
         this.firestore.collection('usuarios').doc(user.uid).update(this.usuario)
         .then(() => {
@@ -58,7 +54,22 @@ export class PerfilComponent {
         })
         .catch(error => {
           console.error('Error al actualizar el perfil:', error);
-        })
+        });
+          user.updatePassword(this.usuario.password)
+            .then(() => {
+              console.log("Contraseña actualizada correctamente");
+              user.updateEmail(this.usuario.email)
+                .then(() => {
+
+                  console.log("Información de inicio de sesión actualizada correctamente");
+                })
+                .catch(function(error) {
+                  console.error("Error al actualizar el correo electrónico:", error);
+                });
+            })
+            .catch(function(error) {
+              console.error("Error al actualizar la contraseña:", error);
+            });
       }else {
         console.error('No se ha encontrado ningún usuario autenticado.');
       }
@@ -75,12 +86,13 @@ export class PerfilComponent {
       .toPromise()
       .then((snapshot) => {
         if (snapshot && snapshot.exists) {
-          const data = snapshot.data() as UsuarioData; // Asegura el tipo de data
+          const data = snapshot.data() as UsuarioData;
           if (data) {
             this.usuario.ciudad = data.ciudad || '';
             this.usuario.direccion = data.direccion || '';
             this.usuario.postalCode = data.postalCode || 0;
           }
+          this.encryptPassword(this.usuario.password);
         }
       })
       .catch(error => {

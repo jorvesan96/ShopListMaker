@@ -1,5 +1,9 @@
+
+<div id="content">
+
+  <section id="login">
 <div id="login-container">
-  <ul class="nav nav-pills">
+  <ul class="nav nav-pills" id="botones">
     <li class="nav-item">
       <a class="nav-link " routerLink='/acceso'>Acceso</a>
     </li>
@@ -32,7 +36,7 @@
                       <div *ngIf="personal_step && registroForm.controls['repetirContrasena'].errors">
                         <div *ngIf="f['repetirContrasena'].errors?.['required']">La contraseña debe coincidir</div>
                     </div>
-                    <input (click)="next()" type="button" name="next" class="next action-button" value="Siguiente"/>
+                    <input (click)="next()" id="boton" type="button" name="next" class="next action-button" value="Siguiente"/>
                 </fieldset>
                 <fieldset *ngIf="step == 1" >
                     <input type="text" formControlName="ciudad"  placeholder="ciudad" class="form-control"/>
@@ -47,8 +51,8 @@
                     <div *ngIf="address_step && registroForm.controls['postalCode'].errors">
                         <div *ngIf="f['postalCode'].errors?.['required']">El codigo postal es necesario</div>
                     </div>
-                    <input (click)="previous()" type="button" name="previous" class="previous action-button-previous" value="Anterior"/>
-                    <input (click)="enviarRegistro(registroForm)" type="submit" name="submit" class="submit action-button" value="Enviar"/>
+                    <input (click)="previous()" id="boton1" type="button" name="previous" class="previous action-button-previous" value="Anterior"/>
+                    <input (click)="enviarRegistro(registroForm)" id="boton2" type="submit" name="submit" class="submit action-button" value="Enviar"/>
                 </fieldset>
             </form>
             <div *ngIf="step == 2">
@@ -59,3 +63,5 @@
     </div>
 
     </div>
+  </section>
+</div>

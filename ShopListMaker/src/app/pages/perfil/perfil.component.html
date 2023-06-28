@@ -10,7 +10,7 @@
       <p><strong>Direccion:</strong> <br> {{ usuario.direccion }}</p>
       <p><strong>Codigo Postal:</strong> <br> {{ usuario.postalCode }}</p>
       <div class="button-container">
-        <button (click)="activarEdicion()">Modificar</button>
+        <button id="button1"(click)="activarEdicion()">Modificar</button>
       </div>
     </div>
 
@@ -22,9 +22,10 @@
       </div>
 
       <div id="editable">
-        <label for="password">Contraseña:</label>
+        <label for="password">Nueva contraseña: </label>
         <br>
-        <input type="password" id="password" name="password" [(ngModel)]="usuario.password" required>
+        <input type="text" id="password" name="password" [(ngModel)]="usuario.password" required>
+        <p>*Obligatorio escribir contraseña</p>
       </div>
 
       <div id="editable">
