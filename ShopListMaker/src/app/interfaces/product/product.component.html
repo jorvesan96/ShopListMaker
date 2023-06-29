@@ -1,8 +1,31 @@
 <div class="card" style="width:400px">
-  <img class="card-img-top" src="../bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
+  <img class="card-img-top" id="productImage" alt="Card image" style="width:100%">
   <div class="card-body">
-    <h4 class="card-title">John Doe</h4>
-    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-    <a href="#" class="btn btn-primary">See Profile</a>
+    <h4 class="card-title" id="productTitle"></h4>
+    <p class="card-text" id="productDescription"></p>
+    <a href="#" class="btn btn-primary" onclick="showProductDetails()">Mas detalles</a>
+    <div class="product-details">
+      <div class="add-to-cart">
+        <!-- Icono para añadir el producto a la lista de la compra -->
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+      <div class="product-info">
+        <div class="product-name" id="productName"></div>
+        <div class="favorite-icon">
+          <!-- Icono de favoritos -->
+          <i class="fas fa-heart"></i>
+        </div>
+        <div class="product-price" id="productPrice"></div>
+        <div class="price-change-icon">
+          <!-- Icono que indica si el precio ha subido o bajado respecto al anterior -->
+          <i class="fas fa-arrow-up"></i> <!-- o <i class="fas fa-arrow-down"></i> -->
+        </div>
+        <div class="recommended">
+          <!-- Icono que indica si el producto está recomendado en función de la relación peso/cantidad -->
+          <i class="fas fa-check"></i> <!-- o cualquier otro icono de recomendación -->
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<button (click)="copyDocument()">Copiar Documento</button>

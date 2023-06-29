@@ -1,3 +1,4 @@
+ <div class="global">
  <section class="lateral">
 
   <div class="dropdown">
@@ -14,38 +15,36 @@
 
 
  <div class="sidenav" id="filtros">
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#clients">Clients</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
+    <a href="#about">Carniceria</a>
+    <a href="#services">Pescaderia</a>
+    <a href="#clients">Fruteria</a>
+    <a href="#contact">Verduras y hortalizas</a>
+    <a href="#contact">Panaderia</a>
+    <a href="#contact">Charcuteria</a>
+    <a href="#contact">Lacteos</a>
+    <a href="#contact">Dulces</a>
+    <a href="#contact">Aperitivos</a>
+    <a href="#contact">Huevos</a>
+    <a href="#contact">Rebozados</a>
+    <a href="#contact">Pizzas</a>
+    <a href="#contact">Helados</a>
+    <a href="#contact">Del mar</a>
+    <a href="#contact">Refrescos</a>
+    <a href="#contact">Alcoholes</a>
+    <a href="#contact">Aguas/zumos</a>
   </div>
 
   <div class="sidenav" id="links">
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact">Contact</a>
+    <a href="#contact">Lista de la compra</a>
+    <a href="#contact">Favoritos </a>
+    <a href="#contact">Recomendados</a>
   </div>
 
 </section>
 <section class="productos">
-  <app-product></app-product>
+  <div class="product-grid" id="productGrid">
+    <app-product *ngFor="let producto of productos" [nombre]="producto"></app-product>
+  </div>
 </section>
 
+</div>

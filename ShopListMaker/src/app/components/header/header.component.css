@@ -48,3 +48,10 @@
   font-size: 6vh;
   color: aliceblue;
 }
+
+#lista{
+  width: 3.5%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}

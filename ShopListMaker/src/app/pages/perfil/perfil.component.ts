@@ -31,7 +31,9 @@ export class PerfilComponent {
     password: '',
     ciudad: '',
     direccion: '',
-    postalCode: 0
+    postalCode: 0,
+    favoritos: [],
+    listas: []
   };
 
   editMode = false;

@@ -2,9 +2,9 @@
 
   <a routerLink=""><img id="logo" src="assets\icons\iconmonstr-shop-8-240 2.png" alt="logo"></a><p id="titulo">ShopListMaker</p>
     <ul>
-
       <a *ngIf="isLogged" (click)="cerrarSesion()" routerLink=""><img id="log-out" src="assets/icons/log-out.png" alt="cerrar sesion"></a>
       <a *ngIf="isLogged" routerLink="perfil"><img id="perfil" src="assets/icons/perfil.png" alt="perfil"></a>
+      <a *ngIf="isLogged" routerLink="lista-compra"><img id="lista" src="assets/icons/carro.png" alt="lista-compra"></a>
       <a *ngIf="!isLogged" routerLink="acceso"> <img id="sesion" src="assets/icons/Inicio Sesion.png" alt="inicio sesion"></a>
     </ul>
 </nav>

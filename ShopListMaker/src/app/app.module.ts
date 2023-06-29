@@ -24,6 +24,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { HttpClientModule } from '@angular/common/http';
+import { HistorialComponent } from './pages/historial/historial.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     ProductosComponent,
     HeaderComponent,
     FooterComponent,
-    ProductComponent
+    ProductComponent,
+    HistorialComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

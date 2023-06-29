@@ -4,4 +4,6 @@ export interface Usuario {
   ciudad: string;
   direccion: string;
   postalCode: number;
+  favoritos: string[];
+  listas: string[];
 }

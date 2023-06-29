@@ -1,16 +1,14 @@
 .lateral{
   background-color: #f1f1f1;
   height: 89vh;
-  width: 20vh;
+  width: 21vh;
   margin-top: 5%;
-
-
   position: fixed;
 }
 
 #filtros {
   height: 54.5%;
-  width: 16vh;
+  width: 17vh;
   position: fixed;
   left: 0;
   background-color: #0C5680;
@@ -22,8 +20,8 @@
 #filtros a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
-  font-size: 25px;
-  color: #818181;
+  font-size: 20px;
+  color: #f1f1f1;
   display: block;
 }
 
@@ -34,7 +32,7 @@
 
 #links{
   height: 16%;
-  width: 16vh;
+  width: 17vh;
   position: fixed;
   left: 0;
   background-color: #0C5680;
@@ -43,11 +41,16 @@
   margin-top: 27%;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
 #links a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
-  font-size: 25px;
-  color: #818181;
+  font-size: 20px;
+  color: #f1f1f1;
   display: block;
 
 }
@@ -60,15 +63,29 @@
 .dropdown{
   margin-top: 20%;
   margin-bottom: 10%;
-  margin-left: 9%;
+  margin-left: 12%;
 }
 
 .productos{
-  margin-left: 20%;
+  margin-left: 12%;
   margin-top: 7%;
   margin-bottom: 5%;
-  width: 80%;
+  width: 87%;
   height: 89vh;
   position: fixed;
   overflow-x: scroll;
+  flex: 3;
+}
+.global {
+  display: flex;
+}
+
+.lateral {
+  /* Estilos para la sección lateral */
+  flex: 1;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
 }
