@@ -7,7 +7,7 @@
 }
 
 #filtros {
-  height: 54.5%;
+  height: 60%;
   width: 17vh;
   position: fixed;
   left: 0;
@@ -31,14 +31,14 @@
 
 
 #links{
-  height: 16%;
+  height: 10%;
   width: 17vh;
   position: fixed;
   left: 0;
   background-color: #0C5680;
   overflow-x: hidden;
   margin-left: 1%;
-  margin-top: 27%;
+  margin-top: 30%;
 }
 
 ::-webkit-scrollbar {

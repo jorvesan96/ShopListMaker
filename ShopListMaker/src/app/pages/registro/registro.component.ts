@@ -14,15 +14,15 @@ import { AbstractControl, ValidatorFn } from '@angular/forms';
 export class RegistroComponent implements OnInit {
 
   registroForm: FormGroup = new FormGroup({});
-  personal_step = false;
-  address_step = false;
+  personal_step = true;
+  address_step = true;
   step = 0;
 
   constructor(private router: Router, private formBuilder: FormBuilder,  private authService: AuthService) { }
 
   ngOnInit() {
   this.registroForm = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.email, validarEmailCom()]],
     repetirCorreo: ['', [Validators.required, Validators.email, validarEmailIgual()]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     repetirContrasena: ['', [Validators.required, Validators.minLength(6), validarContrasenaIgual()]],
@@ -41,8 +41,9 @@ encryptPassword(password: string): string {
   }
 
   next() {
-    if (this.step === 0) {
-      this.personal_step = true;
+    if (this.registroForm.get('email')?.invalid || this.registroForm.get('repetirCorreo')?.invalid ||
+      this.registroForm.get('password')?.invalid || this.registroForm.get('repetirContrasena')?.invalid) {
+      return;
     }
     this.personal_step = false;
     this.address_step = true;
@@ -128,3 +129,15 @@ function validarContrasenaIgual(): ValidatorFn {
   };
 
 }
+function validarEmailCom(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const email = control.value;
+    if (email && !/\..+$/i.test(email)) {
+      return { emailSinExtension: true };
+    }
+    return null;
+  };
+}
+
+
+

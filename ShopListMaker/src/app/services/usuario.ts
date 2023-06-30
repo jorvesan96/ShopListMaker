@@ -6,4 +6,5 @@ export interface Usuario {
   postalCode: number;
   favoritos: string[];
   listas: string[];
+  historial: string[];
 }

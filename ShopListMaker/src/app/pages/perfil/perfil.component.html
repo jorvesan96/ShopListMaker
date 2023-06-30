@@ -1,24 +1,41 @@
+
 <div id="content">
-  <div class="Historico">
-    <p><strong>Hisotrial de compras</strong> </p>
-    <a routerLink="/historial"><img  id="historial" src="assets\icons\historial.png" alt="historial"></a>
-
-  </div>
-
+  <a  (click)="goBack()"> <img id="button" src="\assets\icons\Atras.png" alt="atrás" ></a>
   <section id="perfil">
   <div id="perfil-container">
-    <div *ngIf="!editMode">
-      <p><strong>Email:</strong> <br> {{ usuario.email }}</p>
-      <p><strong>Contraseña:</strong> <br>********</p>
-      <p><strong>Ciudad:</strong> <br> {{ usuario.ciudad }}</p>
-      <p><strong>Direccion:</strong> <br> {{ usuario.direccion }}</p>
-      <p><strong>Codigo Postal:</strong> <br> {{ usuario.postalCode }}</p>
-      <div class="button-container">
-        <button id="button1"(click)="activarEdicion()">Modificar</button>
+    <div  *ngIf="!editContrasena">
+      <div *ngIf="!editMode">
+        <p><strong>Email:</strong> <br> {{ usuario.email }}</p>
+        <p><strong>Contraseña:</strong> <button id="cambiarContraseña"(click)="cambiarContrasena()">Cambiar contraseña</button> <br>********</p>
+        <p><strong>Ciudad:</strong> <br> {{ usuario.ciudad }}</p>
+        <p><strong>Dirección:</strong> <br> {{ usuario.direccion }}</p>
+        <p><strong>Código Postal:</strong> <br> {{ usuario.postalCode }}</p>
+        <div class="button-container">
+          <button id="button1"(click)="activarEdicion()">Modificar</button>
+        </div>
       </div>
     </div>
+    <div *ngIf="editContrasena">
 
-    <form *ngIf="editMode" (ngSubmit)="guardarPerfil()">
+      <a (click)="editContrasena=false" ><img class="atras" src="\assets\icons\Atras.png"> </a>
+      <form (ngSubmit)="guardarContrasena()">
+        <div id="editable">
+          <label for="password">Nueva contraseña: </label>
+          <br>
+          <input type="text" id="password" name="password" [(ngModel)]="usuario.password" required>
+
+        </div>
+        <div class="button-container">
+          <button type="submit">Guardar</button>
+        </div>
+      </form>
+
+    </div>
+
+
+    <form *ngIf="editMode"  (ngSubmit)="guardarPerfil()">
+      <a (click)="editMode=false" ><img class="atras" src="\assets\icons\Atras.png"> </a>
+      <div *ngIf="!editContrasena">
       <div id="editable">
         <label for="email">Email:</label>
         <br>
@@ -26,26 +43,19 @@
       </div>
 
       <div id="editable">
-        <label for="password">Nueva contraseña: </label>
-        <br>
-        <input type="text" id="password" name="password" [(ngModel)]="usuario.password" required>
-        <p>*Obligatorio escribir contraseña</p>
-      </div>
-
-      <div id="editable">
-        <label for="ciudad">Ciudad::</label>
+        <label for="ciudad">Ciudad:</label>
         <br>
         <input type="text" id="cuidad" name="ciudad" [(ngModel)]="usuario.ciudad" required>
       </div>
 
       <div id="editable">
-        <label for="direccion">Direccion:</label>
+        <label for="direccion">Dirección:</label>
         <br>
         <input type="text" id="direccion" name="direccion" [(ngModel)]="usuario.direccion" required>
       </div>
 
       <div id="editable">
-        <label for="postalcode">Codigo postal:</label>
+        <label for="postalcode">Código postal:</label>
         <br>
         <input type="number" id="postalCode" name="postalCode" [(ngModel)]="usuario.postalCode" required>
       </div>
@@ -54,6 +64,7 @@
       <div class="button-container">
         <button type="submit">Guardar</button>
       </div>
+    </div>
     </form>
   </div>
   </section>

@@ -23,31 +23,34 @@
                     <input type="text" formControlName="email"  [ngClass]="{ 'is-invalid': personal_step && f['email'].errors }" placeholder="Email" class="form-control"/>
                     <div *ngIf="personal_step && registroForm.controls['email'].errors">
                         <div *ngIf="f['email'].errors?.['required']">El email es necesario</div>
+                        <div *ngIf="personal_step && registroForm.controls['email'].errors?.['emailSinExtension']">
+                          El email debe tener una extensión válida
+                        </div>
                     </div>
-                    <input type="text" formControlName="repetirCorreo" name="repetirCorreo" placeholder="Repetir Correo" class="form-control"/>
+                    <input type="text" formControlName="repetirCorreo" name="repetirCorreo" [ngClass]="{ 'is-invalid': personal_step && f['repetirCorreo'].errors }" placeholder="Repetir Correo" class="form-control"/>
                     <div *ngIf="personal_step && registroForm.controls['repetirCorreo'].errors">
                       <div *ngIf="f['repetirCorreo'].errors?.['required']">El email debe coincidir</div>
                    </div>
-                    <input type="text" formControlName="password" name="password" placeholder="Contraseña" class="form-control"/>
+                    <input type="text" formControlName="password" name="password" placeholder="Contraseña" [ngClass]="{ 'is-invalid': personal_step && f['password'].errors }"class="form-control"/>
                     <div *ngIf="personal_step && registroForm.controls['password'].errors">
                       <div *ngIf="f['password'].errors?.['required']">La contraseña es necesaria</div>
                   </div>
-                    <input type="text" formControlName="repetirContrasena" name="repetirContrasena" placeholder="Repetir Contraseña" class="form-control"/>
+                    <input type="text" formControlName="repetirContrasena" name="repetirContrasena" [ngClass]="{ 'is-invalid': personal_step && f['repetirContrasena'].errors }" placeholder="Repetir Contraseña" class="form-control"/>
                       <div *ngIf="personal_step && registroForm.controls['repetirContrasena'].errors">
                         <div *ngIf="f['repetirContrasena'].errors?.['required']">La contraseña debe coincidir</div>
                     </div>
                     <input (click)="next()" id="boton" type="button" name="next" class="next action-button" value="Siguiente"/>
                 </fieldset>
                 <fieldset *ngIf="step == 1" >
-                    <input type="text" formControlName="ciudad"  placeholder="ciudad" class="form-control"/>
+                    <input type="text" formControlName="ciudad"  [ngClass]="{ 'is-invalid': personal_step && f['ciudad'].errors }" placeholder="ciudad" class="form-control"/>
                     <div *ngIf="address_step && registroForm.controls['ciudad'].errors">
                         <div *ngIf="f['ciudad'].errors?.['required']">La ciudad es necesaria</div>
                     </div>
-                    <input type="text" formControlName="direccion"  placeholder="Direccion" class="form-control">
+                    <input type="text" formControlName="direccion" [ngClass]="{ 'is-invalid': personal_step && f['direccion'].errors }"  placeholder="Direccion" class="form-control">
                     <div *ngIf="address_step && registroForm.controls['direccion'].errors">
                         <div *ngIf="f['direccion'].errors?.['required']">La direccion es necesaria</div>
                     </div>
-                    <input type="number" formControlName="postalCode"  placeholder="Codigo postal" class="form-control"/>
+                    <input type="number" formControlName="postalCode"  [ngClass]="{ 'is-invalid': personal_step && f['postalCode'].errors }" placeholder="Codigo postal" class="form-control"/>
                     <div *ngIf="address_step && registroForm.controls['postalCode'].errors">
                         <div *ngIf="f['postalCode'].errors?.['required']">El codigo postal es necesario</div>
                     </div>

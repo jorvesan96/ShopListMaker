@@ -27,4 +27,4 @@ export class HeaderComponent {
       console.error('Error al cerrar sesión:', error);
     });  }
 
-}
+  }

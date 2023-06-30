@@ -1,4 +1,7 @@
-  import { Component, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+
 
 @Component({
   selector: 'app-productos',
@@ -6,19 +9,19 @@
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent implements OnInit{
-
-  productos: string[] = ['Producto 1', 'Producto 2', 'Producto 3', 'Producto 4', 'Producto 5', 'Producto 6'];
+  productos: any[] = [];
 
   ngOnInit() {
-    this.renderProductos();
-  }
+    const firebaseConfig = {};
 
-  renderProductos() {
-    const productGrid = document.getElementById('productGrid');
-    for (let i: number = 0; i < this.productos.length; i++) {
-      const appProduct: HTMLElement = document.createElement('app-product');
-      productGrid?.appendChild(appProduct);
-    }
-  }
+    const db = firebase.firestore();
 
+    const collectionRef = db.collection('productos');
+    collectionRef.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.productos.push(doc.data());
+      });
+    });
+  }
 }
+

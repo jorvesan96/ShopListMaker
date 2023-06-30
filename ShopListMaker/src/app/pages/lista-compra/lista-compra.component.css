@@ -1,0 +1,21 @@
+#button {
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10%;
+  margin-left: 5%;
+}
+
+@media print {
+  /* Estilos para la impresión */
+  body {
+    background-color: white; /* Fondo blanco */
+  }
+
+  .elemento-a-imprimir {
+    /* Estilos específicos para el elemento que se va a imprimir */
+  }
+
+  /* ... Otros estilos para la impresión ... */
+}

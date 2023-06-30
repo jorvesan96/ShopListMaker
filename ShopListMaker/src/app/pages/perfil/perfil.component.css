@@ -3,6 +3,7 @@
   border-radius: 10px;
   height: 69.5vh;
   padding-top: 5%;
+
 }
 
 #perfil {
@@ -11,7 +12,9 @@
   border: 2px solid black;
   margin: 5vw auto;
   border-radius: 10px;
-  margin-top: 9%;
+  position: relative;
+  top: -20vh;
+
 }
 
 #perfil-container p{
@@ -41,13 +44,6 @@ strong{
   margin-bottom: 2%;
 }
 
-/* .button-container button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-} */
-
 .button-container button {
   background-color: #4CAF50; /* Green */
   border: none;
@@ -72,28 +68,31 @@ strong{
   color: white;
 }
 
-.Historico {
-  width: 4%;
+#cambiarContraseña {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+
+  display: inline-block;
+  font-size: 10px;
+
+  cursor: pointer;
+  width: 10%;
   float: right;
   margin-right: 10%;
+  margin-left: -20%;
+
 }
 
-.Historico a {
-  text-decoration: none;
-  color: black;
-}
-
-.Historico img {
-  width: 100%;
-  height: 100%;
-  margin-left: 65%;
-  margin-top: -10%;
-}
-
-.Historico p {
+#button {
   color: white;
-  text-align: center;
-  white-space: nowrap;
-  font-size: 1vw;
-
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10%;
+  margin-left: 5%;
 }
+
+

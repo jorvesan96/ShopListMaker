@@ -5,8 +5,10 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Usuario } from 'src/app/services/usuario';
 import 'firebase/compat/auth';
 import firebase from 'firebase/compat/app';
+import { Location } from '@angular/common';
 
 interface UsuarioData {
+  password: string;
   ciudad: string;
   direccion: string;
   postalCode: number;
@@ -18,7 +20,7 @@ interface UsuarioData {
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent {
-  constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
+  constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore, private location:Location) {
     const user = firebase.auth().currentUser;
     if (user) {
       this.usuario.email = user.email || '';
@@ -33,13 +35,19 @@ export class PerfilComponent {
     direccion: '',
     postalCode: 0,
     favoritos: [],
-    listas: []
+    listas: [],
+    historial: []
   };
 
   editMode = false;
+  editContrasena = false;
 
   activarEdicion() {
     this.editMode = true;
+  }
+
+  cambiarContrasena() {
+    this.editContrasena = true;
   }
 
   guardarPerfil() {
@@ -57,25 +65,39 @@ export class PerfilComponent {
         .catch(error => {
           console.error('Error al actualizar el perfil:', error);
         });
-          user.updatePassword(this.usuario.password)
-            .then(() => {
-              console.log("Contraseña actualizada correctamente");
-              user.updateEmail(this.usuario.email)
-                .then(() => {
 
-                  console.log("Información de inicio de sesión actualizada correctamente");
-                })
-                .catch(function(error) {
-                  console.error("Error al actualizar el correo electrónico:", error);
-                });
-            })
-            .catch(function(error) {
-              console.error("Error al actualizar la contraseña:", error);
-            });
+        user.updateEmail(this.usuario.email)
+          .then(() => {
+
+            console.log("Información de inicio de sesión actualizada correctamente");
+          })
+          .catch(function(error) {
+            console.error("Error al actualizar el correo electrónico:", error);
+          });
+
       }else {
         console.error('No se ha encontrado ningún usuario autenticado.');
       }
 
+  }
+
+  guardarContrasena() {
+    const user = firebase.auth().currentUser;
+    const encryptedPassword = this.encryptPassword(this.usuario.password);
+    this.editContrasena = false;
+    this.usuario.password = encryptedPassword;
+
+    if(user){
+      user.updatePassword(this.usuario.password)
+        .then(() => {
+          console.log("Contraseña actualizada correctamente");
+        })
+        .catch(function(error) {
+          console.error("Error al actualizar la contraseña:", error);
+        });
+    }else {
+      console.error('No se ha encontrado ningún usuario autenticado.');
+    }
   }
 
   encryptPassword(password: string): string {
@@ -100,5 +122,9 @@ export class PerfilComponent {
       .catch(error => {
         console.error('Error al recuperar los datos del usuario:', error);
       });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

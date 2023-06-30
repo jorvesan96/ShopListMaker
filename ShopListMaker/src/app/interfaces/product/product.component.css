@@ -1,0 +1,46 @@
+#lleno {
+  width: 15%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
+#lleno {
+  width: 15%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
+#precio-alto{
+  width: 5%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
+#carro{
+  width: 25%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
+#recomendado{
+  width: 25%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
+#reseña{
+  width: 15%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
+
+.card{
+  background-color: #0C5680;
+  border-radius: 5%;
+}
+
+#productImage{
+  width:25vh;
+  height: 20vh;
+}

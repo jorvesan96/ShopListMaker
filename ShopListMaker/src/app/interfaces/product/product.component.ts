@@ -1,4 +1,4 @@
-import { Component, Input,OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import { FirestoreService } from 'src/app/services/firestore.service';
@@ -9,8 +9,8 @@ import { FirestoreService } from 'src/app/services/firestore.service';
   styleUrls: ['./product.component.css']
 })
 
-export class ProductComponent {
-  @Input() nombre!: string;
+export class ProductComponent implements OnInit{
+  @Input() producto: any;
 
 
   constructor(private firestoreService: FirestoreService) { }
@@ -20,13 +20,14 @@ export class ProductComponent {
 
   ngOnInit(): void {
     this.recorrerColeccion();
+    console.log(this.producto.imagen);
   }
-
+  // Eliminar posteriormente proque es para crear un producto en el firestore
   copyDocument() {
     const originalCollection = 'productos';
-    const originalDocumentId = 'Jamon';
+    const originalDocumentId = 'Zanahoria M';
     const newCollection = 'productos';
-    const newDocumentId = 'Peras';
+    const newDocumentId = 'Ginebra M';
 
     this.firestoreService.copyDocument(originalCollection, originalDocumentId, newCollection, newDocumentId);
   }
@@ -39,11 +40,26 @@ export class ProductComponent {
     ( querySnapshot).forEach((doc) => {
       const data = doc.data();
       miArray.push(data);
-      console.log(data);
-
     });
     this.productos= miArray;
 
+  }
+
+  // cambiarImagenCorazon() {
+  //   var imagenCorazon = document.getElementById("lleno") as HTMLImageElement;
+  //   var imagenProducto = document.getElementById("vacio") as HTMLImageElement;
+
+  //   if (imagenCorazon && imagenProducto) {
+  //     if (imagenCorazon.src.endsWith("lleno.png")) {
+  //       imagenCorazon.src = "assets/icons/vacio.png";
+  //     } else {
+  //       imagenCorazon.src = "assets/icons/lleno.png";
+  //     }
+  //   }
+  // }
+  seleccionarProducto(producto: any) {
+    this.productoSeleccionado = producto;
+    console.log(this.productoSeleccionado, "producto seleccionado");
   }
 
 }
