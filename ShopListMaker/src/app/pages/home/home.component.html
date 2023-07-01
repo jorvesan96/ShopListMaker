@@ -5,14 +5,13 @@
   </section>
 
   <section class="fomulario">
-    <form>
+    <form (ngSubmit)="navigateToAnotherPage()">
       <div class="input-container" id="campo">
-      <input type="text" name="nombre" placeholder="Escriba aquí el nombre del producto..." (keydown.enter)="navigateToAnotherPage()">
+        <input type="text" name="nombre" placeholder="Escriba aquí el nombre del producto..." [(ngModel)]="searchTerm">
       </div>
-      <div class="input-container" id="desplegable">
-        <select id="supermercado" placeholder="supermercado">
+      <div class="input-container" id="desplegable" >
+        <select id="supermercado" placeholder="supermercado" >
           <option value="" disabled selected>Elija un supermercado</option>
-          <option value="corte">Corte Inglés</option>
           <option value="hiper">Hiperdino</option>
           <option value="carre">Carrefour</option>
           <option value="merca">Mercadona</option>
@@ -20,5 +19,5 @@
       </div>
     </form>
   </section>
-
 </div>
+

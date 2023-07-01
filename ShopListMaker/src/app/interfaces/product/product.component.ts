@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, ViewChild } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import { FirestoreService } from 'src/app/services/firestore.service';
@@ -10,34 +10,36 @@ import { Usuario } from 'src/app/services/usuario';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-
-export class ProductComponent implements OnInit{
-
+export class ProductComponent implements OnInit {
   @Input() producto: Producto;
   @Input() usuario: Usuario;
+  @ViewChild('supermercadoImage', { static: true }) supermercadoImageRef!: ElementRef;
+
+  public supermercadoImageUrl: string;
 
   constructor(private firestoreService: FirestoreService) {
     this.producto = {} as Producto;
     this.usuario = {} as Usuario;
+    this.supermercadoImageUrl = '';
   }
-
-
-
 
   ngOnInit(): void {
+    const supermercadoImageElement: HTMLImageElement = this.supermercadoImageRef.nativeElement;
+    const supermercado = this.producto.supermercado;
 
-
+    switch (supermercado) {
+      case 'Mercadona':
+        this.supermercadoImageUrl = 'assets/icons/mercadona.jpg';
+        break;
+      case 'Hiperdino':
+        this.supermercadoImageUrl = 'assets/icons/hiperdino.jpg';
+        break;
+      // Agrega más casos para otros supermercados
+      case 'Carrefour':
+        this.supermercadoImageUrl = 'assets/icons/carrefour.webp';
+        break;
+    }
   }
-  // Eliminar posteriormente proque es para crear un producto en el firestore
-  copyDocument() {
-    const originalCollection = 'productos';
-    const originalDocumentId = 'Zanahoria M';
-    const newCollection = 'productos';
-    const newDocumentId = 'Ginebra M';
-
-    this.firestoreService.copyDocument(originalCollection, originalDocumentId, newCollection, newDocumentId);
-  }
-
 
   async toggleFavorite(producto: Producto) {
     producto.favorito = !producto.favorito;
@@ -69,7 +71,6 @@ export class ProductComponent implements OnInit{
       });
     }
   }
-
 
   addToCart(producto: Producto) {
     const user = firebase.auth().currentUser;

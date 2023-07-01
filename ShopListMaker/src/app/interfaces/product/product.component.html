@@ -1,34 +1,35 @@
-<div class="card" style="width:400px">
+<div class="card" style="width: 400px">
   <a><img [src]="producto.imagen" id="productImage" alt="Imagen producto"></a>
 
   <div class="card-body">
     <h4 class="card-title" id="productTitle">{{producto.nombre}}</h4>
     <p class="card-text" id="productDescription">{{producto.descripcion}}</p>
+    <div class="supermercado-image">
+      <img id="logo"[src]="supermercadoImageUrl" #supermercadoImage alt="Supermercado">
+    </div>
     <div class="product-details">
       <div class="add-to-cart">
-        <a (click)="addToCart(producto)"><img id="carro" src="assets\icons\Compra.png" alt="añadir al carro"></a>
+        <a (click)="addToCart(producto)"><img id="carro" src="assets/icons/Compra.png" alt="añadir al carro"></a>
       </div>
       <div class="product-info">
         <div class="favorite-icon">
-          <a>
-            <img id="corazon" src="assets/icons/vacio.png" alt="favorito">
+          <a (click)="toggleFavorite(producto)">
+            <img id="corazon" [src]="producto.favorito ? 'assets/icons/lleno.png' : 'assets/icons/vacio.png'" alt="favorito">
           </a>
         </div>
-        </div>
-        <div class="reseña">
-          <a><img id="reseña" src="assets\icons\reseña.png" alt="reseña"></a>
-        </div>
-
-        <div class="product-price" id="productPrice">{{producto.precio}} €</div>
-
-        <div class="product-weight" id="productWeight">{{producto.peso}} gr</div>
-        <div class="recommended">
-          <a><img id="recomendado" src="assets\icons\recomendado.png" alt="recomendado"></a>
-        </div>
-
       </div>
+      <div class="reseña">
+        <a><img id="reseña" src="assets/icons/reseña.png" alt="reseña"></a>
+      </div>
+
+      <div class="product-price" id="productPrice">{{producto.precio}} €</div>
+
+      <div class="product-weight" id="productWeight">{{producto.peso}} gr</div>
+      <div class="recommended">
+        <a><img id="recomendado" src="assets/icons/recomendado.png" alt="recomendado"></a>
+      </div>
+
+
     </div>
   </div>
-
-<!-- Eliminar el boton cuando se vaya a entregar -->
-<button (click)="copyDocument()">Copiar Documento</button>
+</div>

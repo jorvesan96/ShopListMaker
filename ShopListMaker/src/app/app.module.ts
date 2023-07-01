@@ -26,6 +26,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { HttpClientModule } from '@angular/common/http';
 import { HistorialComponent } from './pages/historial/historial.component';
+import { FiltroService } from 'src/app/services/filtro.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { HistorialComponent } from './pages/historial/historial.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [FiltroService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
