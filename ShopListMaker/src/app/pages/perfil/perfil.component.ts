@@ -35,7 +35,7 @@ export class PerfilComponent {
     direccion: '',
     postalCode: 0,
     favoritos: [],
-    listas: [],
+    carrito: [],
     historial: []
   };
 

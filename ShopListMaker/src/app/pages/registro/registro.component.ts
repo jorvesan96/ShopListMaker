@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { SHA256 } from 'crypto-js';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
@@ -28,7 +29,10 @@ export class RegistroComponent implements OnInit {
     repetirContrasena: ['', [Validators.required, Validators.minLength(6), validarContrasenaIgual()]],
     ciudad: ['', Validators.required],
     direccion: ['', Validators.required],
-    postalCode: ['', [Validators.required, Validators.maxLength(5), Validators.minLength(5)]]
+    postalCode: ['', [Validators.required, Validators.maxLength(5), Validators.minLength(5)]],
+    favoritos: this.formBuilder.array([]),
+    listas: this.formBuilder.array([]),
+    historial: this.formBuilder.array([])
   });
 }
 encryptPassword(password: string): string {

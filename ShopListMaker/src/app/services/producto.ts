@@ -1,5 +1,4 @@
 export interface Producto {
-  alza: boolean;
   carro: boolean;
   descripcion: String;
   favorito: boolean;

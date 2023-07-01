@@ -5,6 +5,6 @@ export interface Usuario {
   direccion: string;
   postalCode: number;
   favoritos: string[];
-  listas: string[];
+  carrito: string[];
   historial: string[];
 }

@@ -1,14 +1,14 @@
 .lateral{
   background-color: #f1f1f1;
   height: 89vh;
-  width: 21vh;
+  width: 23vh;
   margin-top: 5%;
   position: fixed;
 }
 
 #filtros {
   height: 60%;
-  width: 17vh;
+  width: 19vh;
   position: fixed;
   left: 0;
   background-color: #0C5680;
@@ -32,7 +32,7 @@
 
 #links{
   height: 10%;
-  width: 17vh;
+  width: 19vh;
   position: fixed;
   left: 0;
   background-color: #0C5680;
@@ -59,11 +59,10 @@
   color: #f1f1f1;
 }
 
-
 .dropdown{
   margin-top: 20%;
   margin-bottom: 10%;
-  margin-left: 12%;
+  margin-left: 11%;
 }
 
 .productos{
@@ -86,6 +85,7 @@
 }
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
 }
+

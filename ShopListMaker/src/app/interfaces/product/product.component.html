@@ -6,27 +6,29 @@
     <p class="card-text" id="productDescription">{{producto.descripcion}}</p>
     <div class="product-details">
       <div class="add-to-cart">
-        <a><img id="carro" src="assets\icons\Compra.png" alt="añadir al carro"></a>
+        <a (click)="addToCart(producto)"><img id="carro" src="assets\icons\Compra.png" alt="añadir al carro"></a>
       </div>
       <div class="product-info">
         <div class="favorite-icon">
-          <a><img  ></a>
+          <a>
+            <img id="corazon" src="assets/icons/vacio.png" alt="favorito">
+          </a>
         </div>
-        <div class="product-price" id="productPrice">{{producto.precio}}</div>
-        <div class="price-change-icon">
-          <a><img id="precio-alto" src="assets\icons\precio-alto.png" alt="precio"></a>
-        </div>
-        <div class="product-weight" id="productWeight">{{producto.peso}}</div>
-        <div class="recommended">
-          {{producto.Recomendado}}
-          <a><img id="recomendado" src="assets\icons\recomendado.png" alt="recomendado"></a>
         </div>
         <div class="reseña">
           <a><img id="reseña" src="assets\icons\reseña.png" alt="reseña"></a>
         </div>
+
+        <div class="product-price" id="productPrice">{{producto.precio}} €</div>
+
+        <div class="product-weight" id="productWeight">{{producto.peso}} gr</div>
+        <div class="recommended">
+          <a><img id="recomendado" src="assets\icons\recomendado.png" alt="recomendado"></a>
+        </div>
+
       </div>
     </div>
   </div>
-</div>
+
 <!-- Eliminar el boton cuando se vaya a entregar -->
 <button (click)="copyDocument()">Copiar Documento</button>

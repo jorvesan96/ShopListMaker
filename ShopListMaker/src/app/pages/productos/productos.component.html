@@ -6,25 +6,25 @@
       Supermercados
     </button>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Corte Inglés</a></li>
-      <li><a class="dropdown-item" href="#">Hiperdino</a></li>
-      <li><a class="dropdown-item" href="#">Carrefour</a></li>
+      <li><a class="dropdown-item" (click)="filtrarPorSuper('Mercadona')">Mercadona</a></li>
+      <li><a class="dropdown-item" (click)="filtrarPorSuper('Hiperdino')">Hiperdino</a></li>
+      <li><a class="dropdown-item" (click)="filtrarPorSuper('Carrefour')">Carrefour</a></li>
     </ul>
   </div>
 
  <div class="sidenav" id="filtros">
-    <a href="#about">Carniceria</a>
-    <a href="#services">Pescaderia</a>
-    <a href="#clients">Fruteria</a>
-    <a href="#contact">Verduras y hortalizas</a>
-    <a href="#contact">Panaderia</a>
-    <a href="#contact">Charcuteria</a>
-    <a href="#contact">Lacteos</a>
-    <a href="#contact">Dulces</a>
-    <a href="#contact">Aperitivos</a>
-    <a href="#contact">Huevos</a>
-    <a href="#contact">Del mar</a>
-    <a href="#contact">Alcoholes</a>
+    <a (click)="filtrarPorTipo('Carniceria')">Carniceria</a>
+    <a (click)="filtrarPorTipo('Pescaderia')">Pescaderia</a>
+    <a (click)="filtrarPorTipo('Fruteria')">Fruteria</a>
+    <a (click)="filtrarPorTipo('Verduras y hortalizas')">Verduras y hortalizas</a>
+    <a (click)="filtrarPorTipo('Panaderia')">Panaderia</a>
+    <a (click)="filtrarPorTipo('Charcuteria')">Charcuteria</a>
+    <a (click)="filtrarPorTipo('Lacteos')">Lacteos</a>
+    <a (click)="filtrarPorTipo('Dulces')">Dulces</a>
+    <a (click)="filtrarPorTipo('Aperitivos')">Aperitivos</a>
+    <a (click)="filtrarPorTipo('Huevos')">Huevos</a>
+    <a (click)="filtrarPorTipo('Del mar')">Del mar</a>
+    <a (click)="filtrarPorTipo('Alcoholes')">Alcoholes</a>
   </div>
 
   <div class="sidenav" id="links">
@@ -34,9 +34,11 @@
 
 </section>
 
+
 <section class="productos">
   <div class="product-grid" id="productGrid">
-    <app-product *ngFor="let producto of productos" [producto]="producto"></app-product>
+    <app-product *ngFor="let producto of productosFiltrados" [producto]="producto"></app-product>
+
     <br>
     <br>
   </div>

@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import { FirestoreService } from 'src/app/services/firestore.service';
+import { Producto } from 'src/app/services/producto';
+import { Usuario } from 'src/app/services/usuario';
 
 @Component({
   selector: 'app-product',
@@ -10,17 +12,21 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 })
 
 export class ProductComponent implements OnInit{
-  @Input() producto: any;
+
+  @Input() producto: Producto;
+  @Input() usuario: Usuario;
+
+  constructor(private firestoreService: FirestoreService) {
+    this.producto = {} as Producto;
+    this.usuario = {} as Usuario;
+  }
 
 
-  constructor(private firestoreService: FirestoreService) { }
 
-  productos: any = [];
-  productoSeleccionado: any;
 
   ngOnInit(): void {
-    this.recorrerColeccion();
-    console.log(this.producto.imagen);
+
+
   }
   // Eliminar posteriormente proque es para crear un producto en el firestore
   copyDocument() {
@@ -32,34 +38,58 @@ export class ProductComponent implements OnInit{
     this.firestoreService.copyDocument(originalCollection, originalDocumentId, newCollection, newDocumentId);
   }
 
-  async recorrerColeccion(){
-    const db = firebase.firestore();
-    const collectionRef = db.collection('productos');
-    const miArray: firebase.firestore.DocumentData[] = [];
-    const querySnapshot = await collectionRef.get();
-    ( querySnapshot).forEach((doc) => {
-      const data = doc.data();
-      miArray.push(data);
-    });
-    this.productos= miArray;
 
+  async toggleFavorite(producto: Producto) {
+    producto.favorito = !producto.favorito;
+
+    const user = firebase.auth().currentUser;
+    if (user) {
+      const userId = user.uid;
+
+      const db = firebase.firestore();
+      const userRef = db.collection('usuarios').doc(userId);
+
+      await db.runTransaction(async (transaction) => {
+        const userDoc = await transaction.get(userRef);
+
+        if (userDoc.exists) {
+          const favoritos = userDoc.get('favoritos') || [];
+
+          if (producto.favorito) {
+            favoritos.push(producto.nombre);
+          } else {
+            const index = favoritos.indexOf(producto.nombre);
+            if (index > -1) {
+              favoritos.splice(index, 1);
+            }
+          }
+
+          transaction.update(userRef, { favoritos });
+        }
+      });
+    }
   }
 
-  // cambiarImagenCorazon() {
-  //   var imagenCorazon = document.getElementById("lleno") as HTMLImageElement;
-  //   var imagenProducto = document.getElementById("vacio") as HTMLImageElement;
 
-  //   if (imagenCorazon && imagenProducto) {
-  //     if (imagenCorazon.src.endsWith("lleno.png")) {
-  //       imagenCorazon.src = "assets/icons/vacio.png";
-  //     } else {
-  //       imagenCorazon.src = "assets/icons/lleno.png";
-  //     }
-  //   }
-  // }
-  seleccionarProducto(producto: any) {
-    this.productoSeleccionado = producto;
-    console.log(this.productoSeleccionado, "producto seleccionado");
+  addToCart(producto: Producto) {
+    const user = firebase.auth().currentUser;
+    if (user) {
+      const userId = user.uid;
+
+      const db = firebase.firestore();
+      const userRef = db.collection('usuarios').doc(userId);
+
+      db.runTransaction(async (transaction) => {
+        const userDoc = await transaction.get(userRef);
+
+        if (userDoc.exists) {
+          const carrito = userDoc.get('carrito') || [];
+
+          carrito.push(producto);
+
+          transaction.update(userRef, { carrito });
+        }
+      });
+    }
   }
-
 }
