@@ -6,30 +6,31 @@
       Supermercados
     </button>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" (click)="filtrarPorSuper('Mercadona')">Mercadona</a></li>
-      <li><a class="dropdown-item" (click)="filtrarPorSuper('Hiperdino')">Hiperdino</a></li>
-      <li><a class="dropdown-item" (click)="filtrarPorSuper('Carrefour')">Carrefour</a></li>
+      <li><a class="dropdown-item"(click)="resetearFiltros()">Todos</a></li>
+      <li><a class="dropdown-item" (click)="filtrarPorSuper('Mercadona'); filtrarProductos()">Mercadona</a></li>
+      <li><a class="dropdown-item" (click)="filtrarPorSuper('Hiperdino'); filtrarProductos()">Hiperdino</a></li>
+      <li><a class="dropdown-item" (click)="filtrarPorSuper('Carrefour'); filtrarProductos()">Carrefour</a></li>
     </ul>
   </div>
 
  <div class="sidenav" id="filtros">
-    <a (click)="filtrarPorTipo('Carniceria')">Carniceria</a>
-    <a (click)="filtrarPorTipo('Pescaderia')">Pescaderia</a>
-    <a (click)="filtrarPorTipo('Fruteria')">Fruteria</a>
-    <a (click)="filtrarPorTipo('Verduras y hortalizas')">Verduras y hortalizas</a>
-    <a (click)="filtrarPorTipo('Panaderia')">Panaderia</a>
-    <a (click)="filtrarPorTipo('Charcuteria')">Charcuteria</a>
-    <a (click)="filtrarPorTipo('Lacteos')">Lacteos</a>
-    <a (click)="filtrarPorTipo('Dulces')">Dulces</a>
-    <a (click)="filtrarPorTipo('Aperitivos')">Aperitivos</a>
-    <a (click)="filtrarPorTipo('Huevos')">Huevos</a>
-    <a (click)="filtrarPorTipo('Del mar')">Del mar</a>
-    <a (click)="filtrarPorTipo('Alcoholes')">Alcoholes</a>
+    <a (click)="filtrarPorTipo('Carniceria'); filtrarProductos()">Carniceria</a>
+    <a (click)="filtrarPorTipo('Pescaderia'); filtrarProductos()">Pescaderia</a>
+    <a (click)="filtrarPorTipo('Fruteria'); filtrarProductos()">Fruteria</a>
+    <a (click)="filtrarPorTipo('Verduras y hortalizas'); filtrarProductos()">Verduras y hortalizas</a>
+    <a (click)="filtrarPorTipo('Panaderia'); filtrarProductos()">Panaderia</a>
+    <a (click)="filtrarPorTipo('Charcuteria'); filtrarProductos()">Charcuteria</a>
+    <a (click)="filtrarPorTipo('Lacteos'); filtrarProductos()">Lacteos</a>
+    <a (click)="filtrarPorTipo('Dulces'); filtrarProductos()">Dulces</a>
+    <a (click)="filtrarPorTipo('Aperitivos'); filtrarProductos()">Aperitivos</a>
+    <a (click)="filtrarPorTipo('Huevos'); filtrarProductos()">Huevos</a>
+    <a (click)="filtrarPorTipo('Del mar'); filtrarProductos()">Del mar</a>
+    <a (click)="filtrarPorTipo('Alcoholes'); filtrarProductos()">Alcoholes</a>
   </div>
 
   <div class="sidenav" id="links">
-    <a (click)="filtrarFavoritos()">Favoritos</a>
-    <a (click)="filtrarRecomendados(); mostrarRecomendados = true;">Recomendados</a>
+    <a (click)="filtrarFavoritos(); filtrarProductos()">Favoritos</a>
+    <a (click)="filtrarPorRecomendados(); mostrarRecomendados = true; filtrarProductos()">Recomendados</a>
   </div>
 
 </section>

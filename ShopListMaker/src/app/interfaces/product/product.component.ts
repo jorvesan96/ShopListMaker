@@ -16,6 +16,9 @@ export class ProductComponent implements OnInit {
   @Input() producto: Producto;
   @Input() usuario: Usuario;
   @ViewChild('supermercadoImage', { static: true }) supermercadoImageRef!: ElementRef;
+  imageSrc: string='';
+  isImageActive: boolean = false;
+  public usuarioLogeado: boolean = false;
 
   public supermercadoImageUrl: string;
   constructor(private firestoreService: FirestoreService) {
@@ -42,6 +45,7 @@ export class ProductComponent implements OnInit {
 
     const user = firebase.auth().currentUser;
     if (user) {
+      this.usuarioLogeado = true;
       const userId = user.uid;
       const db = firebase.firestore();
       const userRef = db.collection('usuarios').doc(userId);
@@ -209,9 +213,16 @@ export class ProductComponent implements OnInit {
           }
 
           transaction.update(userRef, { carrito });
+          this.isImageActive = true;
+
+          // Volver a la imagen original después de 2 segundos
+          setTimeout(() => {
+            this.isImageActive = false;
+          }, 1000);
         }
       });
     }
   }
+
 
 }

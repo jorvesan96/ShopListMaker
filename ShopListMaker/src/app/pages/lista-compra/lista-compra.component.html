@@ -14,6 +14,7 @@
 <table>
   <thead>
     <tr class="cabeceras">
+      <th>SUPERMERCADO</th>
       <th>NOMBRE</th>
       <th>CANTIDAD</th>
       <th>PRECIO UNIDAD</th>
@@ -22,19 +23,21 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let producto of productos" class="producto">
-      <td>{{producto.nombre}}</td>
-      <td>{{producto.cantidad}}</td>
-      <td>{{producto.precio}} €</td>
-      <td>{{calcularPrecioGastado(producto.cantidad, producto.precio)}} €</td>
-      <td>
-        <a (click)="eliminarProducto(producto)">
-          <img id="eliminar" src="\assets\icons\eliminar.png" alt="Eliminar">
-        </a>
-      </td>
-    </tr>
-  </tbody>
+  <tr *ngFor="let producto of productos" class="producto">
+    <td>{{ producto.supermercado }}</td>
+    <td>{{ producto.nombre }}</td>
+    <td>{{ producto.cantidad }}</td>
+    <td>{{ producto.precio }} €</td>
+    <td>{{ calcularPrecioGastado(producto.cantidad, producto.precio) }} €</td>
+    <td>
+      <a (click)="eliminarProducto(producto)">
+        <img id="eliminar" src="\assets\icons\eliminar.png" alt="Eliminar">
+      </a>
+    </td>
+  </tr>
+</tbody>
 </table>
+<a><img id="basura" src="\assets\icons\basura.png" (click)="limpiarCarrito()"></a>
 
 <a (click)="imprimir()">
   <img id="imprimir" src="\assets\icons\Imprimir.png" alt="Impresión">

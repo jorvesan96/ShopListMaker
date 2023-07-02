@@ -4,4 +4,5 @@ export interface Carrito {
   precio: number;
   total: number;
   id:number;
+  supermercado: string;
 }

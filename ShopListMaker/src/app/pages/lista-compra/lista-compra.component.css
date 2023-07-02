@@ -55,6 +55,11 @@ h1{
   margin-right: 5%;
 
 }
+#basura{
+  width: 4%;
+  margin-left: 2%;
+  cursor: pointer;
+}
 
 #eliminar{
   width: 15%;
@@ -80,10 +85,20 @@ h1{
   }
   h1{
     text-align: right;
-    margin-left: 20%;
+    margin-left: 32%;
+    white-space: nowrap;
+  }
+  #basura{
+    display: none;
   }
   #ubicacion {
     display: none;
+  }
+  table {
+    width: 90%;
+    border-collapse: collapse;
+    table-layout: initial;
+
   }
 
   #sumaTotal{

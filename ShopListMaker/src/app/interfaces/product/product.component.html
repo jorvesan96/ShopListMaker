@@ -8,12 +8,12 @@
       <img id="logo"[src]="supermercadoImageUrl" #supermercadoImage alt="Supermercado">
     </div>
     <div class="product-details">
-      <div class="add-to-cart">
-        <a (click)="addToCart(producto)"><img id="carro" src="assets/icons/Compra.png" alt="añadir al carro"></a>
+      <div class="add-to-cart" *ngIf="usuarioLogeado">
+        <a (click)="addToCart(producto)"><img id="carro" [src]="isImageActive ? 'assets/icons/Compra_Add.png' : 'assets/icons/Compra.png'" alt="añadir al carro" ></a>
       </div>
       <div class="product-info">
         <div class="favorite-icon">
-          <a (click)="toggleFavorite(producto)">
+          <a (click)="toggleFavorite(producto)" *ngIf="usuarioLogeado">
             <img id="corazon" [src]="producto.favorito ? 'assets/icons/lleno.png' : 'assets/icons/vacio.png'" alt="favorito">
           </a>
         </div>

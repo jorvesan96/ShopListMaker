@@ -13,66 +13,89 @@ export class ProductosComponent implements OnInit {
   productosFiltrados: any[] = [];
   searchTerm: string = '';
   mostrarRecomendados: boolean = false;
+  public filtroTipo: string | null = null;
+  public filtroFavoritos: boolean = false;
+  public filtroSupermercado: string | null = null;
+  public filtroRecomendado: boolean = false;
+
 
   constructor(private filtroService: FiltroService) {}
 
   ngOnInit() {
     const firebaseConfig = {};
 
-  const db = firebase.firestore();
+    const db = firebase.firestore();
 
-  const collectionRef = db.collection('productos');
-  collectionRef.get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      this.productos.push(doc.data());
+    const collectionRef = db.collection('productos');
+    collectionRef.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.productos.push(doc.data());
+      });
+      this.filtrarProductos();
     });
-    this.filtrarProductos();
-  });
 
-  if (this.mostrarRecomendados) {
-    this.filtrarRecomendados();
-  }
-  }
-
-  filtrarProductos() {
-    this.searchTerm = this.filtroService.getTerminoBusqueda();
-    if (this.searchTerm.trim() !== '') {
-      this.productosFiltrados = this.productos.filter(producto =>
-        producto.nombre.toLowerCase().startsWith(this.searchTerm.toLowerCase())
-      );
-    } else {
-      this.productosFiltrados = this.productos;
-    }
+      this.filtrarProductos();
   }
 
   filtrarPorTipo(tipo: string) {
-    this.productosFiltrados = this.productos.filter(producto => producto.tipo === tipo);
-  }
-
-  filtrarPorSuper(supermercado: string) {
-    this.productosFiltrados = this.productos.filter(producto => producto.supermercado === supermercado);
-  }
-
-  filtrarRecomendados() {
-    this.productosFiltrados = this.productos.filter(producto => producto.recomendado === true);
+    this.filtroTipo = tipo;
+    this.filtrarProductos();
   }
 
   filtrarFavoritos() {
-    const user = firebase.auth().currentUser;
-    if (user) {
-      const userId = user.uid;
+    this.filtroFavoritos = true;
+    this.filtrarProductos();
+  }
 
-      const db = firebase.firestore();
-      const userRef = db.collection('usuarios').doc(userId);
+  filtrarPorSuper(supermercado: string) {
+    this.filtroSupermercado = supermercado;
+    this.filtrarProductos();
+  }
+  filtrarPorRecomendados() {
+    this.filtroRecomendado = true;
+    this.filtrarProductos();
+  }
 
-      userRef.get().then((userDoc) => {
-        if (userDoc.exists) {
-          const favoritos = userDoc.get('favoritos') || [];
-          this.productosFiltrados = this.productos.filter(producto =>
-            favoritos.some((fav: any) => fav.id === producto.id)
-          );
-        }
-      });
+  filtrarProductos() {
+    this.productosFiltrados = this.productos;
+
+    if (this.filtroTipo) {
+      this.productosFiltrados = this.productosFiltrados.filter(producto => producto.tipo === this.filtroTipo);
     }
+
+    if (this.filtroFavoritos) {
+      const user = firebase.auth().currentUser;
+      if (user) {
+        const userId = user.uid;
+
+        const db = firebase.firestore();
+        const userRef = db.collection('usuarios').doc(userId);
+
+        userRef.get().then((userDoc) => {
+          if (userDoc.exists) {
+            const favoritos = userDoc.get('favoritos') || [];
+            this.productosFiltrados = this.productosFiltrados.filter(producto =>
+              favoritos.some((fav: any) => fav.id === producto.id)
+            );
+          }
+        });
+      }
+    }
+
+    if (this.filtroRecomendado) {
+      this.productosFiltrados = this.productos.filter(producto => producto.recomendado === true);
+    }
+
+    if (this.filtroSupermercado) {
+      this.productosFiltrados = this.productosFiltrados.filter(producto => producto.supermercado === this.filtroSupermercado);
+    }
+  }
+
+  resetearFiltros() {
+    this.filtroTipo = null;
+    this.filtroFavoritos = false;
+    this.filtroSupermercado = null;
+    this.filtroRecomendado=false;
+    this.filtrarProductos();
   }
 }
