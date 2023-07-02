@@ -12,6 +12,7 @@ export class ProductosComponent implements OnInit {
   productos: any[] = [];
   productosFiltrados: any[] = [];
   searchTerm: string = '';
+  mostrarRecomendados: boolean = false;
 
   constructor(private filtroService: FiltroService) {}
 
@@ -27,6 +28,10 @@ export class ProductosComponent implements OnInit {
     });
     this.filtrarProductos();
   });
+
+  if (this.mostrarRecomendados) {
+    this.filtrarRecomendados();
+  }
   }
 
   filtrarProductos() {
@@ -46,6 +51,10 @@ export class ProductosComponent implements OnInit {
 
   filtrarPorSuper(supermercado: string) {
     this.productosFiltrados = this.productos.filter(producto => producto.supermercado === supermercado);
+  }
+
+  filtrarRecomendados() {
+    this.productosFiltrados = this.productos.filter(producto => producto.recomendado === true);
   }
 
   filtrarFavoritos() {

@@ -4,6 +4,7 @@ import 'firebase/firestore';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Producto } from 'src/app/services/producto';
 import { Usuario } from 'src/app/services/usuario';
+import { from } from 'rxjs';
 
 
 @Component({
@@ -34,7 +35,6 @@ export class ProductComponent implements OnInit {
       case 'Hiperdino':
         this.supermercadoImageUrl = 'assets/icons/hiperdino.jpg';
         break;
-      // Agrega más casos para otros supermercados
       case 'Carrefour':
         this.supermercadoImageUrl = 'assets/icons/carrefour.webp';
         break;
@@ -59,7 +59,69 @@ export class ProductComponent implements OnInit {
     }
 
 
+    const db = firebase.firestore();
+    const productosRef = db.collection('productos').where('nombre', '==', this.producto.nombre);
+
+
+    from(productosRef.get()).subscribe((snapshot) => {
+      const productos = snapshot.docs.map((doc) => doc.data()) as Producto[];
+
+      if (productos.length > 0) {
+        let mejorProducto = productos[0];
+        let mejorRelacion = mejorProducto.precio / mejorProducto.peso;
+
+        for (let i = 1; i < productos.length; i++) {
+          const relacion = productos[i].precio / productos[i].peso;
+          if (relacion < mejorRelacion) {
+            mejorProducto = productos[i];
+            mejorRelacion = relacion;
+          }
+        }
+
+        if (mejorProducto.id === this.producto.id) {
+          this.producto.recomendado = true;
+          const productoId = this.producto.id;
+
+          const db = firebase.firestore();
+          const productosCollectionRef = db.collection('productos');
+
+          productosCollectionRef
+            .where('id', '==', productoId)
+            .get()
+            .then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                const nombreDoc = doc.id;
+                console.log('Nombre del documento:', nombreDoc);
+
+                // Actualizar el campo "recomendado" dentro de esta función
+                const productoDocRef = productosCollectionRef.doc(nombreDoc);
+
+                productoDocRef
+                  .update({
+                    recomendado: true,
+                  })
+                  .then(() => {
+                    console.log('Campo "recomendado" actualizado en Firestore.');
+                  })
+                  .catch((error) => {
+                    console.error(
+                      'Error al actualizar el campo "recomendado" en Firestore:',
+                      error
+                    );
+                  });
+              });
+            })
+            .catch((error) => {
+              console.log('Error obteniendo el documento:', error);
+            });
+        }
+
+      }
+    });
+
+
   }
+
 
   async toggleFavorite(producto: Producto) {
     producto.favorito = !producto.favorito;
@@ -107,14 +169,11 @@ export class ProductComponent implements OnInit {
         if (userDoc.exists) {
           const carrito = userDoc.get('carrito') || [];
 
-          // Buscar si el producto ya existe en el carrito
           const existingProduct = carrito.find((p: Producto) => p.nombre === producto.nombre);
 
           if (existingProduct) {
-            // El producto ya existe en el carrito, incrementar la cantidad en 1
             existingProduct.cantidad++;
           } else {
-            // El producto no existe en el carrito, agregarlo con cantidad inicial 1
             producto.cantidad = 1;
             carrito.push(producto);
           }

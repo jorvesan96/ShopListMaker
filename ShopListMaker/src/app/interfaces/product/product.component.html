@@ -25,9 +25,9 @@
       <div class="product-price" id="productPrice">{{producto.precio}} €</div>
 
       <div class="product-weight" id="productWeight">{{producto.peso}} gr</div>
-      <div class="recommended">
-        <a><img id="recomendado" src="assets/icons/recomendado.png" alt="recomendado"></a>
-      </div>
+      <div class="recommended" *ngIf="producto.recomendado">
+  <a><img id="recomendado" src="assets/icons/recomendado.png" alt="recomendado"></a>
+</div>
 
 
     </div>
