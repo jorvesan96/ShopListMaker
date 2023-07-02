@@ -5,6 +5,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 import { Producto } from 'src/app/services/producto';
 import { Usuario } from 'src/app/services/usuario';
 
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -16,7 +17,6 @@ export class ProductComponent implements OnInit {
   @ViewChild('supermercadoImage', { static: true }) supermercadoImageRef!: ElementRef;
 
   public supermercadoImageUrl: string;
-
   constructor(private firestoreService: FirestoreService) {
     this.producto = {} as Producto;
     this.usuario = {} as Usuario;
@@ -39,38 +39,59 @@ export class ProductComponent implements OnInit {
         this.supermercadoImageUrl = 'assets/icons/carrefour.webp';
         break;
     }
+
+    const user = firebase.auth().currentUser;
+    if (user) {
+      const userId = user.uid;
+      const db = firebase.firestore();
+      const userRef = db.collection('usuarios').doc(userId);
+
+      userRef.get().then((userDoc) => {
+        if (userDoc.exists) {
+          const favoritos = userDoc.get('favoritos') || [];
+          const foundProducto = favoritos.find((p: Producto) => p.id === this.producto.id);
+
+          if (foundProducto) {
+            this.producto.favorito = true;
+          }
+        }
+      });
+    }
+
+
   }
 
   async toggleFavorite(producto: Producto) {
     producto.favorito = !producto.favorito;
 
-    const user = firebase.auth().currentUser;
-    if (user) {
-      const userId = user.uid;
+  const user = firebase.auth().currentUser;
+  if (user) {
+    const userId = user.uid;
 
-      const db = firebase.firestore();
-      const userRef = db.collection('usuarios').doc(userId);
+    const db = firebase.firestore();
+    const userRef = db.collection('usuarios').doc(userId);
 
-      await db.runTransaction(async (transaction) => {
-        const userDoc = await transaction.get(userRef);
+    await db.runTransaction(async (transaction) => {
+      const userDoc = await transaction.get(userRef);
 
-        if (userDoc.exists) {
-          const favoritos = userDoc.get('favoritos') || [];
+      if (userDoc.exists) {
+        const favoritos = userDoc.get('favoritos') || [];
 
-          if (producto.favorito) {
-            favoritos.push(producto.nombre);
-          } else {
-            const index = favoritos.indexOf(producto.nombre);
-            if (index > -1) {
-              favoritos.splice(index, 1);
-            }
+        if (producto.favorito) {
+          favoritos.push(producto);
+        } else {
+          const index = favoritos.findIndex((p: Producto) => p.id === producto.id);
+          if (index > -1) {
+            favoritos.splice(index, 1);
           }
-
-          transaction.update(userRef, { favoritos });
         }
-      });
-    }
+
+        transaction.update(userRef, { favoritos });
+      }
+    });
   }
+  }
+
 
   addToCart(producto: Producto) {
     const user = firebase.auth().currentUser;
@@ -86,11 +107,22 @@ export class ProductComponent implements OnInit {
         if (userDoc.exists) {
           const carrito = userDoc.get('carrito') || [];
 
-          carrito.push(producto);
+          // Buscar si el producto ya existe en el carrito
+          const existingProduct = carrito.find((p: Producto) => p.nombre === producto.nombre);
+
+          if (existingProduct) {
+            // El producto ya existe en el carrito, incrementar la cantidad en 1
+            existingProduct.cantidad++;
+          } else {
+            // El producto no existe en el carrito, agregarlo con cantidad inicial 1
+            producto.cantidad = 1;
+            carrito.push(producto);
+          }
 
           transaction.update(userRef, { carrito });
         }
       });
     }
   }
+
 }

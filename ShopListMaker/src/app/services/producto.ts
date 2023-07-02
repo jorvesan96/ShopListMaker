@@ -1,5 +1,6 @@
 export interface Producto {
-  carro: boolean;
+  id: number;
+  cantidad: number;
   descripcion: String;
   favorito: boolean;
   imagen: String;

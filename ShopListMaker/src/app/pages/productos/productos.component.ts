@@ -47,4 +47,23 @@ export class ProductosComponent implements OnInit {
   filtrarPorSuper(supermercado: string) {
     this.productosFiltrados = this.productos.filter(producto => producto.supermercado === supermercado);
   }
+
+  filtrarFavoritos() {
+    const user = firebase.auth().currentUser;
+    if (user) {
+      const userId = user.uid;
+
+      const db = firebase.firestore();
+      const userRef = db.collection('usuarios').doc(userId);
+
+      userRef.get().then((userDoc) => {
+        if (userDoc.exists) {
+          const favoritos = userDoc.get('favoritos') || [];
+          this.productosFiltrados = this.productos.filter(producto =>
+            favoritos.some((fav: any) => fav.id === producto.id)
+          );
+        }
+      });
+    }
+  }
 }
