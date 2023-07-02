@@ -114,6 +114,43 @@ export class ProductComponent implements OnInit {
             .catch((error) => {
               console.log('Error obteniendo el documento:', error);
             });
+        }else
+        {
+          this.producto.recomendado = false;
+          const productoId = this.producto.id;
+
+          const db = firebase.firestore();
+          const productosCollectionRef = db.collection('productos');
+
+          productosCollectionRef
+            .where('id', '==', productoId)
+            .get()
+            .then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                const nombreDoc = doc.id;
+                console.log('Nombre del documento:', nombreDoc);
+
+                // Actualizar el campo "recomendado" dentro de esta función
+                const productoDocRef = productosCollectionRef.doc(nombreDoc);
+
+                productoDocRef
+                  .update({
+                    recomendado: false,
+                  })
+                  .then(() => {
+                    console.log('Campo "recomendado" actualizado en Firestore.');
+                  })
+                  .catch((error) => {
+                    console.error(
+                      'Error al actualizar el campo "recomendado" en Firestore:',
+                      error
+                    );
+                  });
+              });
+            })
+            .catch((error) => {
+              console.log('Error obteniendo el documento:', error);
+            });
         }
 
       }
