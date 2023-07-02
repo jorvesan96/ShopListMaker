@@ -91,9 +91,6 @@ export class ProductComponent implements OnInit {
             .then((querySnapshot) => {
               querySnapshot.forEach((doc) => {
                 const nombreDoc = doc.id;
-                console.log('Nombre del documento:', nombreDoc);
-
-                // Actualizar el campo "recomendado" dentro de esta función
                 const productoDocRef = productosCollectionRef.doc(nombreDoc);
 
                 productoDocRef
@@ -114,8 +111,7 @@ export class ProductComponent implements OnInit {
             .catch((error) => {
               console.log('Error obteniendo el documento:', error);
             });
-        }else
-        {
+        }else{
           this.producto.recomendado = false;
           const productoId = this.producto.id;
 
@@ -128,9 +124,6 @@ export class ProductComponent implements OnInit {
             .then((querySnapshot) => {
               querySnapshot.forEach((doc) => {
                 const nombreDoc = doc.id;
-                console.log('Nombre del documento:', nombreDoc);
-
-                // Actualizar el campo "recomendado" dentro de esta función
                 const productoDocRef = productosCollectionRef.doc(nombreDoc);
 
                 productoDocRef
@@ -206,7 +199,7 @@ export class ProductComponent implements OnInit {
         if (userDoc.exists) {
           const carrito = userDoc.get('carrito') || [];
 
-          const existingProduct = carrito.find((p: Producto) => p.nombre === producto.nombre);
+          const existingProduct = carrito.find((p: Producto) => p.id === producto.id);
 
           if (existingProduct) {
             existingProduct.cantidad++;

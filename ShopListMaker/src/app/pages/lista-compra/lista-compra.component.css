@@ -7,15 +7,90 @@
   margin-left: 5%;
 }
 
-@media print {
-  /* Estilos para la impresión */
-  body {
-    background-color: white; /* Fondo blanco */
-  }
-
-  .elemento-a-imprimir {
-    /* Estilos específicos para el elemento que se va a imprimir */
-  }
-
-  /* ... Otros estilos para la impresión ... */
+#imprimir {
+  float: right;
+  margin-bottom: 5%;
+  margin-right: 5%;
 }
+
+#ubicacion {
+  margin-left:  25%;
+  margin-top: 10%;
+}
+
+.producto {
+  border: 2px solid yellow;
+}
+.producto-container {
+  display: flex;
+  align-items: center;
+}
+
+table {
+  margin-left: 8%;
+  width: 70%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-bottom: 5%;
+}
+
+table th,
+table td {
+  padding: 10px;
+}
+
+table th {
+  background-color: #f2f2f2;
+}
+
+
+h1{
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+#sumaTotal{
+  float: right;
+  font-size: 3vh;
+  margin-right: 5%;
+
+}
+
+#eliminar{
+  width: 15%;
+}
+
+@media print {
+
+  body {
+    background-color: white;
+  }
+  #imprimir {
+    display: none;
+  }
+
+  #button{
+    display: none;
+  }
+  #eliminar{
+    display: none;
+  }
+  .producto {
+    border: 2px solid black;
+  }
+  h1{
+    text-align: right;
+    margin-left: 20%;
+  }
+  #ubicacion {
+    display: none;
+  }
+
+  #sumaTotal{
+    font-size: 2vh;
+    margin-top: 15%;
+    margin-right: 20%;
+  }
+
+}
+

@@ -1,8 +1,42 @@
-<a  (click)="goBack()"> <img id="button" src="\assets\icons\Atras.png" alt="atrás" ></a>
-<a  (click)=imprimir()> <img id="imprimir" src="\assets\icons\Imprimir.png" alt="Impresión" ></a>
-<a  href=""> <img id="ubicación" src="\assets\icons\Ubicación.png" alt="ubicación" ></a>
+<a (click)="goBack()">
+  <img id="button" src="\assets\icons\Atras.png" alt="atrás">
+</a>
 
-
-<div class="elemento-a-imprimir">
-  <!-- Contenido del elemento que se va a imprimir -->
+<a href="">
+  <img id="ubicación" src="\assets\icons\Ubicación.png" alt="ubicación">
+</a>
+<div class="suma-carrito">
+  <p id="sumaTotal"><strong>SUMA TOTAL: {{ sumaCarrito.toFixed(2) }} €</strong></p>
 </div>
+
+
+<h1>Lista de la compra</h1>
+<table>
+  <thead>
+    <tr class="cabeceras">
+      <th>NOMBRE</th>
+      <th>CANTIDAD</th>
+      <th>PRECIO UNIDAD</th>
+      <th>PRECIO TOTAL</th>
+      <th></th> <!-- Columna vacía para el botón de eliminar -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let producto of productos" class="producto">
+      <td>{{producto.nombre}}</td>
+      <td>{{producto.cantidad}}</td>
+      <td>{{producto.precio}} €</td>
+      <td>{{calcularPrecioGastado(producto.cantidad, producto.precio)}} €</td>
+      <td>
+        <a (click)="eliminarProducto(producto)">
+          <img id="eliminar" src="\assets\icons\eliminar.png" alt="Eliminar">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<a (click)="imprimir()">
+  <img id="imprimir" src="\assets\icons\Imprimir.png" alt="Impresión">
+</a>
+
