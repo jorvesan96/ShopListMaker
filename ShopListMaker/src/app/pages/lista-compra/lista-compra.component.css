@@ -108,7 +108,7 @@ h1{
   }
 
   h1{
-    margin-left: 5%;
+    margin-left: 25%;
 
     white-space: nowrap;
   }
@@ -134,7 +134,10 @@ h1{
 
   #sumaTotal{
     font-size: 2vh;
-    margin-right: 5%;
+    position:  static;
+    bottom: 0;
+    margin-top: 5%;
+    float: right;
   }
 
   .producto {

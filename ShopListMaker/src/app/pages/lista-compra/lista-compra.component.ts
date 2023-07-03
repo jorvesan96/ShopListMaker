@@ -23,7 +23,6 @@ export class ListaCompraComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     const db = firebase.firestore();
     if (this.user) {
       this.firestore
@@ -38,6 +37,7 @@ export class ListaCompraComponent implements OnInit {
 
             this.calcularSumaCarrito();
             localStorage.setItem('sumaCarrito', this.sumaCarrito.toString());
+            this.ordenarProductosPorSupermercado();
           }
         });
     } else {
@@ -48,7 +48,7 @@ export class ListaCompraComponent implements OnInit {
         this.productos = JSON.parse(storedProductos);
       }
       if (storedSumaCarrito) {
-        this.sumaCarrito = parseFloat(storedSumaCarrito); // Asignar el valor almacenado a la propiedad sumaCarrito
+        this.sumaCarrito = parseFloat(storedSumaCarrito);
       }
       if (storedSupermercado) {
         localStorage.setItem('supermercado', storedSupermercado);
@@ -100,7 +100,7 @@ export class ListaCompraComponent implements OnInit {
     }
     this.calcularSumaCarrito();
     localStorage.setItem('carrito', JSON.stringify(this.productos));
-    localStorage.setItem('sumaCarrito', this.sumaCarrito.toString()); // Almacenar el nuevo valor en el localStorage
+    localStorage.setItem('sumaCarrito', this.sumaCarrito.toString());
     this.firestore
       .collection('usuarios')
       .doc(this.user?.uid)
@@ -108,6 +108,7 @@ export class ListaCompraComponent implements OnInit {
         carrito: this.productos,
       })
       .then(() => {
+        this.ordenarProductosPorSupermercado();
         console.log('Actualizado');
       }
       );
