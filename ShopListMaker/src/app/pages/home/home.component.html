@@ -7,7 +7,7 @@
   <section class="fomulario">
     <form (ngSubmit)="navigateToAnotherPage()">
       <div class="input-container" id="campo">
-        <input type="text" name="nombre" placeholder="Escriba aquí el nombre del producto..." [(ngModel)]="searchTerm">
+        <input type="text" name="nombre" placeholder="Escriba aquí el nombre del producto..." [(ngModel)]="searchTerm" autocomplete="off">
       </div>
     </form>
   </section>

@@ -1,13 +1,13 @@
 .lateral{
   background-color: #f1f1f1;
   height: 89vh;
-  width: 23vh;
+  width: 24vh;
   margin-top: 5%;
   position: fixed;
 }
 
 #filtros {
-  height: 60%;
+  height: 60.6%;
   width: 19vh;
   position: fixed;
   left: 0;
@@ -63,9 +63,11 @@
 
 .dropdown{
   margin-top: 20%;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
   margin-left: 11%;
+  cursor: pointer;
 }
+
 
 .productos{
   margin-left: 14%;
@@ -94,4 +96,8 @@
 
 .filtro-favoritos.user-authenticated {
   display: block;
+}
+#clear{
+  width: 18%;
+  margin-left: 2%;
 }

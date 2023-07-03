@@ -18,6 +18,7 @@ export class ProductosComponent implements OnInit {
   public filtroSupermercado: string | null = null;
   public filtroRecomendado: boolean = false;
   isUserAuthenticated: boolean = false;
+  supermercadoSeleccionado: string = 'Supermercados';
 
 
   constructor(private filtroService: FiltroService) {}
@@ -111,5 +112,9 @@ export class ProductosComponent implements OnInit {
     this.filtroRecomendado=false;
     this.filtroService.setTerminoBusqueda('');
     this.filtrarProductos();
+  }
+
+  seleccionarSupermercado(supermercado: string) {
+    this.supermercadoSeleccionado = supermercado;
   }
 }

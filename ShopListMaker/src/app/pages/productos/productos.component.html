@@ -2,16 +2,16 @@
  <section class="lateral">
 
   <div class="dropdown">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-      Supermercados
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item"(click)="resetearFiltros()">Todos</a></li>
-      <li><a class="dropdown-item" (click)="filtrarPorSuper('Mercadona'); filtrarProductos()">Mercadona</a></li>
-      <li><a class="dropdown-item" (click)="filtrarPorSuper('Hiperdino'); filtrarProductos()">Hiperdino</a></li>
-      <li><a class="dropdown-item" (click)="filtrarPorSuper('Carrefour'); filtrarProductos()">Carrefour</a></li>
-    </ul>
-  </div>
+  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+    {{ supermercadoSeleccionado }}
+  </button>
+  <a (click)="resetearFiltros()"><img id="clear" src="\assets\icons\clear.png" alr="limpiar filtros" data-bs-toggle="tooltip" title="Limpiar filtros"></a>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" (click)="seleccionarSupermercado('Mercadona'); filtrarProductos(); filtrarPorSuper('Mercadona')">Mercadona</a></li>
+    <li><a class="dropdown-item" (click)="seleccionarSupermercado('Hiperdino'); filtrarProductos(); filtrarPorSuper('Hiperdino')">Hiperdino</a></li>
+    <li><a class="dropdown-item" (click)="seleccionarSupermercado('Carrefour'); filtrarProductos(); filtrarPorSuper('Carrefour')">Carrefour</a></li>
+  </ul>
+</div>
 
  <div class="sidenav" id="filtros">
     <a (click)="filtrarPorTipo('Carniceria'); filtrarProductos()">Carniceria</a>
@@ -29,8 +29,8 @@
   </div>
 
   <div class="sidenav" id="links">
-    <a (click)="filtrarFavoritos(); filtrarProductos()" *ngIf="isUserAuthenticated">Favoritos</a>
-    <a (click)="filtrarPorRecomendados(); mostrarRecomendados = true; filtrarProductos()">Recomendados</a>
+    <a (click)="filtrarFavoritos(); filtrarProductos()" *ngIf="isUserAuthenticated"data-bs-toggle="tooltip" title="Lista de favoritos">Favoritos</a>
+    <a (click)="filtrarPorRecomendados(); mostrarRecomendados = true; filtrarProductos()"data-bs-toggle="tooltip" title="Lista de recomendados">Recomendados</a>
   </div>
 
 </section>

@@ -80,8 +80,9 @@ encryptPassword(password: string): string {
 
       delete registroForm.value.repetirCorreo;
       delete registroForm.value.repetirContrasena;
-
-
+      setTimeout(() => {
+        this.router.navigate(['/productos']);
+      }, 2500);
   }
   createUser() {
 

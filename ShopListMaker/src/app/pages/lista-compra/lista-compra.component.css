@@ -11,22 +11,25 @@
   cursor: pointer;
   position: fixed;
 }
+
 #confirmar{
   bottom: 250px;
-  right: 50px;
+  right: 48px;
   cursor: pointer;
   position: fixed;
 }
 
 #ubicacion {
   margin-left:  40%;
-  margin-top: 30%;
+  margin-top: 25%;
   cursor: pointer;
+  display: none;
 }
 
 .producto {
   border: 2px solid yellow;
 }
+
 .producto-container {
   display: flex;
   align-items: center;
@@ -45,6 +48,7 @@ table {
 table th,
 table td {
   padding: 10px;
+  text-align: center;
 }
 
 table th {
@@ -56,7 +60,8 @@ h1{
   text-align: center;
   margin-bottom: 5%;
   cursor: default;
-  margin-top: 5%;
+  margin-top: 10%;
+  margin-left: -10%;
 }
 
 #sumaTotal{
@@ -66,6 +71,7 @@ h1{
   cursor: default;
   position: fixed;
 }
+
 #basura{
   width: 4%;
   bottom: 150px;
@@ -84,42 +90,56 @@ h1{
   body {
     background-color: white;
   }
+
   #imprimir,#confirmar{
     display: none;
   }
 
-
   #button{
     display: none;
   }
+
   #eliminar{
     display: none;
   }
+
   .producto {
     border: 2px solid black;
   }
+
   h1{
-    text-align: right;
-    margin-left: 32%;
+    margin-left: 5%;
+
     white-space: nowrap;
   }
+
   #basura{
     display: none;
   }
+
   #ubicacion {
     display: none;
   }
+
   table {
-    width: 90%;
+    width: 80%;
     border-collapse: collapse;
     table-layout: initial;
+  }
 
+  table th,
+  table td {
+    font-size: 12px;
   }
 
   #sumaTotal{
     font-size: 2vh;
-    margin-top: 15%;
-    margin-right: 20%;
+    margin-right: 5%;
+  }
+
+  .producto {
+    border: 0px solid black;
+    border-bottom: 1px solid black;
   }
 
 }

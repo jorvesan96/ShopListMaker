@@ -4,6 +4,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Carrito } from 'src/app/services/carrito';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class ListaCompraComponent implements OnInit {
 
   constructor(
     private location: Location,
-    private firestore: AngularFirestore,
+    private firestore: AngularFirestore,private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -162,6 +163,40 @@ export class ListaCompraComponent implements OnInit {
     }
 
   }
+  abrirGoogleMaps() {
+    const user = firebase.auth().currentUser;
+    if (user) {
+      this.firestore
+        .collection('usuarios')
+        .doc(user.uid)
+        .get()
+        .subscribe((doc) => {
+          if (doc.exists) {
+            const data: any = doc.data();
+            const direccion = data?.direccion;
+            if (direccion) {
+              const encodedAddress = encodeURIComponent(direccion);
+              const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=YOUR_API_KEY`;
 
+              this.http.get(geocodeUrl).subscribe((response: any) => {
+                if (response.results.length > 0) {
+                  const { lat, lng } = response.results[0].geometry.location;
+                  const placesUrl = `https://www.google.com/maps/search/supermercados/@${lat},${lng}`;
+
+                  window.open(placesUrl, '_blank');
+                } else {
+                  console.log(geocodeUrl);
+                  console.log('No se encontró la dirección en Google Maps');
+                }
+              });
+            } else {
+              console.log('No se encontró la dirección del usuario en Firestore');
+            }
+          }
+        });
+    } else {
+      console.log('El usuario no está autenticado');
+    }
+  }
 
 }

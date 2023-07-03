@@ -30,7 +30,6 @@
   width: 10vw;
   margin-left: 37%;
   padding: 1vh 1vw;
-
   margin-top: 5%;
 
 }
@@ -42,4 +41,42 @@
 
 #botones .nav-link {
   font-size: 20px !important;
+}
+
+.error-message {
+  color: coral;
+  margin-left: 5%;
+  font-size: 14px;
+}
+
+.previous{
+  background-color: transparent;
+  font-family: "Open sans", sans-serif;
+  margin-left: 23%;
+  margin-right: 5%;
+  margin-top:5%;
+  border: 2px solid black;
+  border-radius: 0.5vw;
+  width: 10vw;
+  padding: 1vh 1vw;
+  font-size: 1.2vw;
+}
+.submit{
+  background-color: transparent;
+  font-family: "Open sans", sans-serif;
+  margin-top:5%;
+  border: 2px solid black;
+  border-radius: 0.5vw;
+  width: 10vw;
+  padding: 1vh 1vw;
+  font-size: 1.2vw;
+}
+#submit:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+#previous:hover {
+  cursor: pointer;
+  background-color: lightgray;
 }
