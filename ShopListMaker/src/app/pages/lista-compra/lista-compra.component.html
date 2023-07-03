@@ -28,7 +28,7 @@
     <td><strong>{{ producto.nombre }}</strong></td>
     <td><strong>{{ producto.cantidad }}</strong></td>
     <td><strong>{{ producto.precio }} €</strong></td>
-    <td><strong>{{ calcularPrecioGastado(producto.cantidad, producto.precio) }} €</strong></td>
+    <td><strong>{{ calcularPrecioGastado(producto.cantidad, producto.precio).toFixed(2) }} €</strong></td>
     <td>
       <a (click)="eliminarProducto(producto)">
         <img id="eliminar" src="\assets\icons\eliminar.png" alt="Eliminar">
