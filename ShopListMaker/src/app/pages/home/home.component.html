@@ -1,0 +1,15 @@
+<div class="pagina">
+  <section class="logo_titulo">
+    <p id="titulo">SHOPLISTMAKER</p>
+    <img id="logo_grande" src="assets\icons\iconmonstr-shop-8-240 2.png">
+  </section>
+
+  <section class="fomulario">
+    <form (ngSubmit)="navigateToAnotherPage()">
+      <div class="input-container" id="campo">
+        <input type="text" name="nombre" placeholder="Escriba aquí el nombre del producto..." [(ngModel)]="searchTerm" autocomplete="off">
+      </div>
+    </form>
+  </section>
+</div>
+

@@ -1,0 +1,41 @@
+#button {
+  cursor: pointer;
+  top: 170px;
+  left: 40px;
+  position: fixed;
+}
+
+h1{
+  margin-top: 10%;
+  margin-bottom: 5%;
+  cursor: default;
+  text-align: center;
+}
+
+table {
+  margin-left: 10%;
+  width: 70%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-bottom: 5%;
+  cursor: default;
+
+}
+.producto {
+  border: 2px solid black;
+  font-size: 16px;
+}
+.producto-container {
+  display: flex;
+  align-items: center;
+}
+
+
+table th,
+table td {
+  padding: 10px;
+}
+
+table th {
+  background-color: #f2f2f2;
+}

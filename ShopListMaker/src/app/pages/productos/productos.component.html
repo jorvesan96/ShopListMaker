@@ -1,0 +1,47 @@
+ <div class="global">
+ <section class="lateral">
+
+  <div class="dropdown">
+  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+    {{ supermercadoSeleccionado }}
+  </button>
+  <a (click)="resetearFiltros()"><img id="clear" src="\assets\icons\clear.png" alr="limpiar filtros" data-bs-toggle="tooltip" title="Limpiar filtros"></a>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" (click)="seleccionarSupermercado('Mercadona'); filtrarProductos(); filtrarPorSuper('Mercadona')">Mercadona</a></li>
+    <li><a class="dropdown-item" (click)="seleccionarSupermercado('Hiperdino'); filtrarProductos(); filtrarPorSuper('Hiperdino')">Hiperdino</a></li>
+    <li><a class="dropdown-item" (click)="seleccionarSupermercado('Carrefour'); filtrarProductos(); filtrarPorSuper('Carrefour')">Carrefour</a></li>
+  </ul>
+</div>
+
+ <div class="sidenav" id="filtros">
+    <a (click)="filtrarPorTipo('Carniceria'); filtrarProductos()">Carniceria</a>
+    <a (click)="filtrarPorTipo('Pescaderia'); filtrarProductos()">Pescaderia</a>
+    <a (click)="filtrarPorTipo('Fruteria'); filtrarProductos()">Fruteria</a>
+    <a (click)="filtrarPorTipo('Verduras y hortalizas'); filtrarProductos()">Verduras y hortalizas</a>
+    <a (click)="filtrarPorTipo('Panaderia'); filtrarProductos()">Panaderia</a>
+    <a (click)="filtrarPorTipo('Charcuteria'); filtrarProductos()">Charcuteria</a>
+    <a (click)="filtrarPorTipo('Lacteos'); filtrarProductos()">Lacteos</a>
+    <a (click)="filtrarPorTipo('Dulces'); filtrarProductos()">Dulces</a>
+    <a (click)="filtrarPorTipo('Aperitivos'); filtrarProductos()">Aperitivos</a>
+    <a (click)="filtrarPorTipo('Huevos'); filtrarProductos()">Huevos</a>
+    <a (click)="filtrarPorTipo('Del mar'); filtrarProductos()">Del mar</a>
+    <a (click)="filtrarPorTipo('Alcoholes'); filtrarProductos()">Alcoholes</a>
+  </div>
+
+  <div class="sidenav" id="links">
+    <a (click)="filtrarFavoritos(); filtrarProductos()" *ngIf="isUserAuthenticated"data-bs-toggle="tooltip" title="Lista de favoritos">Favoritos</a>
+    <a (click)="filtrarPorRecomendados(); mostrarRecomendados = true; filtrarProductos()"data-bs-toggle="tooltip" title="Lista de recomendados">Recomendados</a>
+  </div>
+
+</section>
+
+
+<section class="productos">
+  <div class="product-grid" id="productGrid">
+    <app-product *ngFor="let producto of productosFiltrados" [producto]="producto"></app-product>
+    <br>
+    <br>
+  </div>
+</section>
+
+</div>

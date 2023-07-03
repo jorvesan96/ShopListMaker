@@ -1,0 +1,71 @@
+
+<div id="content">
+
+  <section id="login">
+<div id="login-container">
+  <ul class="nav nav-pills" id="botones">
+    <li class="nav-item">
+      <a class="nav-link " routerLink='/acceso'>Acceso</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" routerLink='/registro'>Registro</a>
+    </li>
+  </ul>
+
+      <div class="row">
+        <div class="col-md-12 col-md-offset-3">
+            <form [formGroup]="registroForm" id="msform">
+              <div class="progress">
+                <div id="myProgressBar" class="progress-bar progress-bar-striped progress-bar-animated"></div>
+              </div>
+
+                <fieldset  *ngIf="step == 0" >
+                    <input type="text" formControlName="email"  [ngClass]="{ 'is-invalid': personal_step && f['email'].errors }" placeholder="Email" class="form-control"autocomplete="off"spellcheck="false"/>
+                    <div *ngIf="personal_step && registroForm.controls['email'].errors" class="error-message">
+                      <div *ngIf="f['email'].errors?.['required']">*El email es necesario</div>
+                      <div *ngIf="personal_step && registroForm.controls['email'].errors?.['emailSinExtension']">
+                        *El email debe tener una extensión válida
+                      </div>
+                    </div>
+                    <input type="text" formControlName="repetirCorreo" name="repetirCorreo" [ngClass]="{ 'is-invalid': personal_step && f['repetirCorreo'].errors }" placeholder="Repetir Correo" class="form-control"autocomplete="off" spellcheck="false"/>
+                    <div *ngIf="personal_step && registroForm.controls['repetirCorreo'].errors"class="error-message">
+                      <div *ngIf="f['repetirCorreo'].errors?.['required']">*El email debe coincidir</div>
+                   </div>
+                    <input type="password" formControlName="password" name="password" placeholder="Contraseña" [ngClass]="{ 'is-invalid': personal_step && f['password'].errors }"class="form-control"/>
+                    <div *ngIf="personal_step && registroForm.controls['password'].errors"class="error-message">
+                      <div *ngIf="personal_step && f['password'].errors?.['minlength']">*La contraseña debe tener al menos 6 caracteres</div>
+                      <div *ngIf="f['password'].errors?.['required']">*La contraseña es necesaria</div>
+                  </div>
+                    <input type="password" formControlName="repetirContrasena" name="repetirContrasena" [ngClass]="{ 'is-invalid': personal_step && f['repetirContrasena'].errors }" placeholder="Repetir Contraseña" class="form-control"/>
+                      <div *ngIf="personal_step && registroForm.controls['repetirContrasena'].errors"class="error-message">
+                        <div *ngIf="f['repetirContrasena'].errors?.['required']">*La contraseña debe coincidir</div>
+                    </div>
+                    <input (click)="next()" id="boton" type="button" name="next" class="next action-button" value="Siguiente"/>
+                </fieldset>
+                <fieldset *ngIf="step == 1" >
+                    <input type="text" formControlName="ciudad"  [ngClass]="{ 'is-invalid': personal_step && f['ciudad'].errors }" placeholder="ciudad" class="form-control"spellcheck="false"/>
+                    <div *ngIf="address_step && registroForm.controls['ciudad'].errors"class="error-message">
+                        <div *ngIf="f['ciudad'].errors?.['required']">*La ciudad es necesaria</div>
+                    </div>
+                    <input type="text" formControlName="direccion" [ngClass]="{ 'is-invalid': personal_step && f['direccion'].errors }"  placeholder="Direccion" class="form-control"spellcheck="false">
+                    <div *ngIf="address_step && registroForm.controls['direccion'].errors"class="error-message">
+                        <div *ngIf="f['direccion'].errors?.['required']">*La direccion es necesaria</div>
+                    </div>
+                    <input type="number" formControlName="postalCode"  [ngClass]="{ 'is-invalid': personal_step && f['postalCode'].errors }" placeholder="Codigo postal" class="form-control"spellcheck="false"/>
+                    <div *ngIf="address_step && registroForm.controls['postalCode'].errors"class="error-message">
+                        <div *ngIf="f['postalCode'].errors?.['required']">*El codigo postal es necesario</div>
+                    </div>
+                    <input (click)="previous()" id="boton1" type="button" name="previous" class="previous action-button-previous" value="Anterior"/>
+                    <input (click)="enviarRegistro(registroForm)" id="boton2" type="submit" name="submit" class="submit action-button" value="Enviar"/>
+                </fieldset>
+            </form>
+            <div *ngIf="step == 2">
+                <h2>Registro completado con exito</h2>
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+  </section>
+</div>

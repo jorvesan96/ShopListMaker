@@ -1,0 +1,39 @@
+<div id="content">
+
+  <section id="login">
+
+    <div id="login-container">
+      <ul class="nav nav-pills" id="botones">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink='/acceso'>Acceso</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink='/registro'>Registro</a>
+        </li>
+      </ul>
+
+      <div id="form">
+        <form [formGroup]="loginForm" name="loginForm"  id="login-form">
+          <div id="fields">
+
+            <input matInput type="email" formControlName="correo" placeholder="Correo eléctronico" class="form-control" spellcheck="false">
+            <div *ngIf="f['correo'].touched && f['correo'].invalid" class="alert">
+              <div *ngIf="f['correo'].touched && f['correo'].errors">*Se debe introducir un correo válido.</div>
+            </div>
+
+            <input type="password" formControlName="contraseña" placeholder="Contraseña" class="form-control">
+            <div *ngIf="f['contraseña'].touched && f['contraseña'].invalid" class="alert">
+              <div *ngIf="!canLogin">Usuario o contraseña incorrectos</div>
+              <div *ngIf="f['contraseña'].errors && f['contraseña'].errors['required']">*Se necesita una contraseña.
+              </div>
+              <div *ngIf="f['contraseña'].errors && f['contraseña'].errors['minlength']">*La contraseña debe tener al
+                menos 5 caracteres</div>
+            </div>
+          </div>
+          <input type="submit" (click)="login(loginForm)" value="Acceder" id="boton">
+        </form>
+      </div>
+
+    </div>
+  </section>
+</div>

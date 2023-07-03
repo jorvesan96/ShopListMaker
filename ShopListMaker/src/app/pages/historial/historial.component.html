@@ -1,0 +1,29 @@
+<a (click)="goBack()">
+  <img id="button" src="\assets\icons\Atras.png" alt="atrás">
+</a>
+
+
+<h1>Historial de compras</h1>
+<table>
+  <thead>
+    <tr class="cabeceras">
+      <th>FECHA</th>
+      <th>CONTENIDO</th>
+      <th>TOTAL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let compra of historial" class="producto">
+      <td>{{ compra.fecha}}</td>
+      <td>
+        <ul>
+          <li *ngFor="let producto of compra.carrito">
+            {{ producto.supermercado }} - {{ producto.nombre }} ({{ producto.cantidad }} unidades)
+          </li>
+        </ul>
+      </td>
+      <td>{{ compra.precioTotal.toFixed(2) }}€</td>
+    </tr>
+</tbody>
+</table>
+

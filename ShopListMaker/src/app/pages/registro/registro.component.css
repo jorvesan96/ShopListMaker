@@ -1,0 +1,82 @@
+#login-container {
+  background-color: white;
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+
+}
+
+#login {
+  height: 50vh;
+  width: 40vw;
+  border: 2px solid black;
+  margin: 5vw auto;
+  border-radius: 10px;
+  margin-top: 10%;
+}
+
+
+#botones{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5%;
+}
+#boton {
+  background-color: transparent;
+  font-family: "Open sans", sans-serif;
+  font-size: 1.2vw;
+  border: 2px solid black;
+  border-radius: 0.5vw;
+  width: 10vw;
+  margin-left: 37%;
+  padding: 1vh 1vw;
+  margin-top: 5%;
+
+}
+
+#boton:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+#botones .nav-link {
+  font-size: 20px !important;
+}
+
+.error-message {
+  color: coral;
+  margin-left: 5%;
+  font-size: 14px;
+}
+
+.previous{
+  background-color: transparent;
+  font-family: "Open sans", sans-serif;
+  margin-left: 23%;
+  margin-right: 5%;
+  margin-top:5%;
+  border: 2px solid black;
+  border-radius: 0.5vw;
+  width: 10vw;
+  padding: 1vh 1vw;
+  font-size: 1.2vw;
+}
+.submit{
+  background-color: transparent;
+  font-family: "Open sans", sans-serif;
+  margin-top:5%;
+  border: 2px solid black;
+  border-radius: 0.5vw;
+  width: 10vw;
+  padding: 1vh 1vw;
+  font-size: 1.2vw;
+}
+#submit:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+#previous:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}

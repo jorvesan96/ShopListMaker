@@ -1,0 +1,103 @@
+.lateral{
+  background-color: #f1f1f1;
+  height: 89vh;
+  width: 24vh;
+  margin-top: 5%;
+  position: fixed;
+}
+
+#filtros {
+  height: 60.6%;
+  width: 19vh;
+  position: fixed;
+  left: 0;
+  background-color: #0C5680;
+  overflow-x: hidden;
+  padding-top: 20px;
+  margin-left: 1%;
+}
+
+#filtros a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #f1f1f1;
+  display: block;
+  cursor: pointer;
+}
+
+#filtros a:hover {
+  color: #f1f1f1;
+}
+
+
+#links{
+  height: 10%;
+  width: 19vh;
+  position: fixed;
+  left: 0;
+  background-color: #0C5680;
+  overflow-x: hidden;
+  margin-left: 1%;
+  margin-top: 30%;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+#links a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #f1f1f1;
+  display: block;
+  cursor: pointer;
+
+}
+
+#links a:hover {
+  color: #f1f1f1;
+}
+
+.dropdown{
+  margin-top: 20%;
+  margin-bottom: 5%;
+  margin-left: 11%;
+  cursor: pointer;
+}
+
+
+.productos{
+  margin-left: 14%;
+  margin-top: 7%;
+  margin-bottom: 5%;
+  width: 87%;
+  height: 89vh;
+  position: fixed;
+  overflow-x: scroll;
+  flex: 3;
+
+}
+.global {
+  display: flex;
+}
+
+.lateral {
+  flex: 1;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  margin-bottom: 5%;
+}
+
+.filtro-favoritos.user-authenticated {
+  display: block;
+}
+#clear{
+  width: 18%;
+  margin-left: 2%;
+}

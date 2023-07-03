@@ -1,0 +1,50 @@
+<a (click)="goBack()">
+  <img id="button" src="\assets\icons\Atras.png" alt="atrás">
+</a>
+
+<a (click)="abrirGoogleMaps()">
+  <img id="ubicacion" src="\assets\icons\Ubicación.png" alt="ubicación">
+</a>
+<div class="suma-carrito">
+  <p id="sumaTotal"><strong>SUMA TOTAL: {{ sumaCarrito.toFixed(2) }} €</strong></p>
+</div>
+
+
+<h1>Lista de la compra</h1>
+<table>
+  <thead>
+    <tr class="cabeceras">
+      <th>SUPERMERCADO</th>
+      <th>NOMBRE</th>
+      <th>CANTIDAD</th>
+      <th>PRECIO UNIDAD</th>
+      <th>TOTAL</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let producto of productos" class="producto">
+    <td><strong>{{ producto.supermercado }}</strong></td>
+    <td><strong>{{ producto.nombre }}</strong></td>
+    <td><strong>{{ producto.cantidad }}</strong></td>
+    <td><strong>{{ producto.precio }} €</strong></td>
+    <td><strong>{{ calcularPrecioGastado(producto.cantidad, producto.precio) }} €</strong></td>
+    <td>
+      <a (click)="eliminarProducto(producto)">
+        <img id="eliminar" src="\assets\icons\eliminar.png" alt="Eliminar">
+      </a>
+    </td>
+  </tr>
+</tbody>
+</table>
+<a><img id="basura" src="\assets\icons\basura.png" (click)="limpiarCarrito()"></a>
+
+<a (click)="confirmar()">
+  <img id="confirmar" src="\assets\icons\Confirmar.png" alt="Confirmar">
+</a>
+
+<a (click)="imprimir()">
+  <img id="imprimir" src="\assets\icons\Imprimir.png" alt="Impresión">
+</a>
+
+

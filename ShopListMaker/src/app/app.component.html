@@ -1,0 +1,10 @@
+<div *ngIf="isLoading">
+  Cargando...
+</div>
+
+<div *ngIf="isLoading == false">
+  <app-header class="escondete"></app-header>
+  <router-outlet></router-outlet>
+  <app-footer class="escondete"></app-footer>
+</div>
+

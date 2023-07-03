@@ -1,0 +1,115 @@
+#lleno {
+  width: 15%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
+
+
+#precio-alto{
+  width: 5%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
+
+#carro{
+  width: 25%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
+
+#recomendado{
+  width: 25%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
+
+#reseña{
+  width: 15%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
+
+.card{
+  background-color: #0C5680;
+  border-radius: 10%;
+  border-color: black;
+  border-width: 5px;
+
+}
+
+#productImage{
+  width: 30vh;
+  height: 20vh;
+  margin-left: 18%;
+  margin-top: 5%;
+  border-radius: 10%;
+}
+
+#productTitle{
+  color: white;
+  font-size: 5vh;
+  text-align: center;
+}
+
+#productDescription{
+  color: white;
+  font-size: 2vh;
+  text-align: center;
+}
+
+#productPrice{
+  color: white;
+  font-size: 3vh;
+  text-align: center;
+  margin-left:-20%;
+  margin-top: 10%;
+  margin-right: -20%;
+}
+
+#productWeight{
+  color: white;
+  font-size: 2vh;
+  text-align: center;
+  margin-left:-15%;
+}
+
+#corazon{
+  width: 15%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
+
+#carro{
+  width: 14%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
+
+#reseña {
+  width: 17%;
+  float: right;
+  margin-right: -1%;
+  margin-top: 1.8%;
+}
+
+#recomendado {
+  width: 15%;
+  float: left;
+  margin-left: -2%;
+  margin-top: -100%;
+}
+
+#logo{
+  width: 5vh;
+  height: 4vh;
+  margin-left: 45%;
+  margin-top: 2%;
+}
+
