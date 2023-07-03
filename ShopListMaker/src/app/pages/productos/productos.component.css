@@ -92,3 +92,6 @@
   margin-bottom: 5%;
 }
 
+.filtro-favoritos.user-authenticated {
+  display: block;
+}

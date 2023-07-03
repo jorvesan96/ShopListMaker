@@ -20,12 +20,14 @@
 
 .formulario {
   text-align: center;
+
 }
 
 .input-container {
   display: inline-block;
   margin: 1vw;
   text-align: center;
+
 }
 
 input[type="text"],
@@ -33,10 +35,10 @@ select {
   padding: 1vw;
   border: 0.3vw solid #000000;
   border-radius: 1vw;
-  width: 30vw;
+  width: 50vw;
   font-size: 1vw;
   color: #095C1A;
-
+  margin-left: 20%;
 }
 
 #campo{

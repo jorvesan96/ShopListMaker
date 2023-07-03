@@ -138,5 +138,30 @@ export class ListaCompraComponent implements OnInit {
     }
   }
 
+  confirmar(): void {
+    const user = firebase.auth().currentUser;
+    if (user) {
+      const fecha = new Date().toLocaleDateString();
+      const precioTotal = this.sumaCarrito;
+      const storedProductos = localStorage.getItem('carrito');
+      const productos = storedProductos ? JSON.parse(storedProductos) : [];
+
+      this.firestore
+        .collection('usuarios')
+        .doc(user.uid)
+        .update({
+          historial: firebase.firestore.FieldValue.arrayUnion({ fecha, precioTotal,  carrito: productos })
+          ,carrito: []
+        })
+        .then(() => {
+          console.log('Confirmación guardada en el historial');
+        })
+        .catch((error) => {
+          console.error('Error al guardar la confirmación en el historial:', error);
+        });
+    }
+
+  }
+
 
 }

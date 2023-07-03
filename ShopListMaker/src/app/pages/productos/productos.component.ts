@@ -17,13 +17,15 @@ export class ProductosComponent implements OnInit {
   public filtroFavoritos: boolean = false;
   public filtroSupermercado: string | null = null;
   public filtroRecomendado: boolean = false;
+  isUserAuthenticated: boolean = false;
 
 
   constructor(private filtroService: FiltroService) {}
 
   ngOnInit() {
     const firebaseConfig = {};
-
+    const user = firebase.auth().currentUser;
+    this.isUserAuthenticated = !!user;
     const db = firebase.firestore();
 
     const collectionRef = db.collection('productos');
@@ -39,20 +41,25 @@ export class ProductosComponent implements OnInit {
 
   filtrarPorTipo(tipo: string) {
     this.filtroTipo = tipo;
+    this.filtroService.setTerminoBusqueda('');
     this.filtrarProductos();
   }
 
   filtrarFavoritos() {
     this.filtroFavoritos = true;
+    this.filtroService.setTerminoBusqueda('');
     this.filtrarProductos();
   }
 
   filtrarPorSuper(supermercado: string) {
     this.filtroSupermercado = supermercado;
+    this.filtroService.setTerminoBusqueda('');
     this.filtrarProductos();
   }
+
   filtrarPorRecomendados() {
     this.filtroRecomendado = true;
+    this.filtroService.setTerminoBusqueda('');
     this.filtrarProductos();
   }
 
@@ -61,6 +68,12 @@ export class ProductosComponent implements OnInit {
 
     if (this.filtroTipo) {
       this.productosFiltrados = this.productosFiltrados.filter(producto => producto.tipo === this.filtroTipo);
+    }
+    if (this.filtroService.getTerminoBusqueda()) {
+      const terminoBusqueda = this.filtroService.getTerminoBusqueda();
+      this.productosFiltrados = this.productosFiltrados.filter(producto =>
+        producto.nombre.toLowerCase().startsWith(terminoBusqueda.toLowerCase())
+      );
     }
 
     if (this.filtroFavoritos) {
@@ -96,6 +109,7 @@ export class ProductosComponent implements OnInit {
     this.filtroFavoritos = false;
     this.filtroSupermercado = null;
     this.filtroRecomendado=false;
+    this.filtroService.setTerminoBusqueda('');
     this.filtrarProductos();
   }
 }

@@ -29,7 +29,7 @@
   </div>
 
   <div class="sidenav" id="links">
-    <a (click)="filtrarFavoritos(); filtrarProductos()">Favoritos</a>
+    <a (click)="filtrarFavoritos(); filtrarProductos()" *ngIf="isUserAuthenticated">Favoritos</a>
     <a (click)="filtrarPorRecomendados(); mostrarRecomendados = true; filtrarProductos()">Recomendados</a>
   </div>
 

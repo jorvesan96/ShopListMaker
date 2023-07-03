@@ -9,13 +9,11 @@ import { FiltroService } from 'src/app/services/filtro.service';
 })
 export class HomeComponent {
   searchTerm: string = '';
-  selectedSupermercado: string = '';
 
   constructor(private router: Router, private filtroService: FiltroService) {}
 
   navigateToAnotherPage() {
     this.filtroService.setTerminoBusqueda(this.searchTerm);
-    this.filtroService.setSupermercado(this.selectedSupermercado);
     this.router.navigate(['/productos']);
   }
 

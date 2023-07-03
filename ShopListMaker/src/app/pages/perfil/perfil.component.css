@@ -3,16 +3,15 @@
   border-radius: 10px;
   height: 69.5vh;
   padding-top: 5%;
-
+  margin-top: 20%;
+  border: 2px solid black;
 }
 
 #perfil {
   height: 70vh;
   width: 40vw;
-  border: 2px solid black;
-  margin: 5vw auto;
-  border-radius: 10px;
-  position: relative;
+  margin: auto;
+
   top: -20vh;
 
 }
@@ -24,6 +23,7 @@
   color: black;
   text-align: center;
   margin-top: 4%;
+
 }
 #editable{
   font-family: "Open sans", sans-serif;
@@ -32,6 +32,7 @@
   color: black;
   text-align: center;
   margin-top: 1%;
+
 }
 
 .button-container {
@@ -74,32 +75,22 @@ strong{
   color: white;
   padding: 5px 5px;
   text-align: center;
-
   display: inline-block;
   font-size: 10px;
-
   cursor: pointer;
   width: 10%;
   float: right;
   margin-right: 10%;
   margin-left: -20%;
-
-}
-
-.atras{
-  margin-left: 5%;
-  width: 5%;
-
 }
 
 #button {
-  color: white;
-  border: none;
   cursor: pointer;
-  font-size: 16px;
-  margin-top: 10%;
-  margin-left: 5%;
+  top: 170px;
+  left: 40px;
+  position: fixed;
 }
+
 
 
 

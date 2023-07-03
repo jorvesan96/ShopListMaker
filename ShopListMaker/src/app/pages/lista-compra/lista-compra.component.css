@@ -1,21 +1,27 @@
 #button {
-  color: white;
-  border: none;
   cursor: pointer;
-  font-size: 16px;
-  margin-top: 10%;
-  margin-left: 5%;
+  top: 170px;
+  left: 40px;
+  position: fixed;
 }
 
 #imprimir {
-  float: right;
-  margin-bottom: 5%;
-  margin-right: 5%;
+  bottom: 150px;
+  right: 50px;
+  cursor: pointer;
+  position: fixed;
+}
+#confirmar{
+  bottom: 250px;
+  right: 50px;
+  cursor: pointer;
+  position: fixed;
 }
 
 #ubicacion {
-  margin-left:  25%;
-  margin-top: 10%;
+  margin-left:  40%;
+  margin-top: 30%;
+  cursor: pointer;
 }
 
 .producto {
@@ -32,6 +38,8 @@ table {
   border-collapse: collapse;
   table-layout: fixed;
   margin-bottom: 5%;
+  cursor: default;
+
 }
 
 table th,
@@ -47,22 +55,28 @@ table th {
 h1{
   text-align: center;
   margin-bottom: 5%;
+  cursor: default;
+  margin-top: 5%;
 }
 
 #sumaTotal{
-  float: right;
+  bottom: 600px;
+  right: 50px;
   font-size: 3vh;
-  margin-right: 5%;
-
+  cursor: default;
+  position: fixed;
 }
 #basura{
   width: 4%;
-  margin-left: 2%;
+  bottom: 150px;
+  right: 280px;
   cursor: pointer;
+  position: fixed;
 }
 
 #eliminar{
   width: 15%;
+  cursor: pointer;
 }
 
 @media print {
@@ -70,9 +84,10 @@ h1{
   body {
     background-color: white;
   }
-  #imprimir {
+  #imprimir,#confirmar{
     display: none;
   }
+
 
   #button{
     display: none;

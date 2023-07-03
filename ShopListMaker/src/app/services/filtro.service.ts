@@ -15,11 +15,4 @@ export class FiltroService {
     this.terminoBusqueda = termino;
   }
 
-  getSupermercado(): string {
-    return this.supermercado;
-  }
-
-  setSupermercado(supermercado: string) {
-    this.supermercado = supermercado;
-  }
 }

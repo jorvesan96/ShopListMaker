@@ -1,6 +1,6 @@
 #login {
   height: 43.5vh;
-  width: 40vw;
+  width: 82.7vh;
   border: 2px solid black;
   margin: 5vw auto;
   border-radius: 10px;
@@ -30,7 +30,7 @@
   font-weight: 0;
   width: 80%;
   margin: 3vw auto;
-  height: 15.75vw;
+  height: 31.8vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -69,6 +69,10 @@
   justify-content: space-between;
   margin: 0 5%;
 }
+#botones .nav-link {
+  font-size: 20px !important;
+}
+
 
 
 @media (max-width: 1023px) and (min-width: 641px) {
