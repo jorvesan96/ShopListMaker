@@ -21,6 +21,7 @@ export class HistorialComponent implements OnInit {
         if (doc.exists) {
           const data: any = doc.data();
           this.historial = data?.historial;
+          this.historial.reverse();
         }
       }).catch((error) => {
         console.error('Error al obtener el historial:', error);

@@ -116,16 +116,14 @@ export class ListaCompraComponent implements OnInit {
   }
 
   limpiarCarrito(): void {
-    const confirmed = confirm('¿Estás seguro de que deseas limpiar el carrito?');
+    this.sumaCarrito = 0;
+    const confirmed = confirm('¿Has terminado de crear tu lista de la compra?');
     if (confirmed) {
-      // Clear the local storage
       localStorage.removeItem('carrito');
       localStorage.removeItem('sumaCarrito');
 
-      // Clear the products array
       this.productos = [];
 
-      // Clear the Firestore "carrito" field for the current user
       const user = firebase.auth().currentUser;
       if (user) {
         const db = firebase.firestore();
@@ -162,7 +160,7 @@ export class ListaCompraComponent implements OnInit {
           console.error('Error al guardar la confirmación en el historial:', error);
         });
     }
-
+    this.limpiarCarrito();
   }
   abrirGoogleMaps() {
     const user = firebase.auth().currentUser;
