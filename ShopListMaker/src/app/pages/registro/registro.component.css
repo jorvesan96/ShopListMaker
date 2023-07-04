@@ -34,6 +34,11 @@
 
 }
 
+h2{
+  text-align: center;
+  margin-top: 2%;
+}
+
 #boton:hover {
   cursor: pointer;
   background-color: lightgray;
